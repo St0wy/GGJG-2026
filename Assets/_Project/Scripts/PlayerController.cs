@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
 
             if (aimStickInput.sqrMagnitude > deadzoneSquared)
             {
-                Vector3 dir = new Vector3(aimStickInput.x, 0f, aimStickInput.y);
+                Vector3 dir = new(aimStickInput.x, 0f, aimStickInput.y);
                 Quaternion target = Quaternion.LookRotation(dir);
 
                 rb.MoveRotation(
@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
             else if (moveStickInput.sqrMagnitude > deadzoneSquared)
             {
                 // Aim in the move direction
-                Vector3 dir = new Vector3(moveStickInput.x, 0f, moveStickInput.y);
+                Vector3 dir = new(moveStickInput.x, 0f, moveStickInput.y);
                 Quaternion target = Quaternion.LookRotation(dir);
 
                 rb.MoveRotation(
@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
 
             Ray ray = mainCamera.ScreenPointToRay(mousePos);
-            Plane plane = new Plane(Vector3.up, transform.position);
+            Plane plane = new(Vector3.up, transform.position);
 
             if (!plane.Raycast(ray, out float dist))
                 return;
