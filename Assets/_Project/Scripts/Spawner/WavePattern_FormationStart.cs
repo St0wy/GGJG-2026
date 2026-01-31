@@ -15,7 +15,7 @@ public class WavePattern_FormationStart : WavePattern
     [Header("Formation")]
     public FormationShape shape = FormationShape.Rectangle;
     public int formationCount = 12;
-    public float spacing = 2.5f;
+    public float spacing = 1f;
 
     [Header("Rectangle settings")]
     public int rectColumns = 4; // nb colonnes (X). Les lignes se calculent automatiquement.

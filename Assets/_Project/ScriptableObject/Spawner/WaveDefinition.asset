@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: WaveDefinition
   m_EditorClassIdentifier: Assembly-CSharp::WaveDefinition
   pattern: {fileID: 11400000, guid: 3d2afbbf503163a45abefcd1c98504c5, type: 2}
-  totalToSpawn: 12
+  totalToSpawn: 8
   enemyPrefabs:
   - {fileID: 7305922326506502481, guid: 21609b48c5bd5624d8a44a1854ef183b, type: 3}
   minDistanceFromPlayer: 8
-  maxDistanceFromPlayer: 15
+  maxDistanceFromPlayer: 10
   maxTriesPerSpawn: 25
