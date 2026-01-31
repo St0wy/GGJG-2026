@@ -83,6 +83,8 @@ public class PlayerController : MonoBehaviour
         health.isInvicible = true;
         invicibilityTimer = invicibilityDuration;
         blinkTimer = blinkSpeed;
+
+        CameraController.Instance.Shake();
     }
 
     void OnEnable()
