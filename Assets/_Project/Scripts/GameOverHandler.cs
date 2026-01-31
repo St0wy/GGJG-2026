@@ -9,7 +9,7 @@ public class GameOverHandler : MonoBehaviour
     {
         if (!playerHealth)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            PlayerController player = FindFirstObjectByType<PlayerController>();
             if (player) playerHealth = player.GetComponent<Health>();
         }
 
