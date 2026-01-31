@@ -19,6 +19,7 @@ public class WaveSpawner : MonoBehaviour
     public LayerMask groundMask;           // mets Terrain + sol ici
     public float raycastStartHeight = 80f; // hauteur au-dessus pour chercher le sol
     public float raycastDistance = 200f;
+    public float enemyHeight = 0.5f;
 
     [Header("Optional NavMesh")]
     public bool requireNavMeshPosition = false;
@@ -152,7 +153,7 @@ public class WaveSpawner : MonoBehaviour
             return false;
         }
 
-        finalPos = hit.point;
+        finalPos = new Vector3(hit.point.x, hit.point.y + enemyHeight, hit.point.z);
 
         // Optionnel: tu peux rajouter ici un anti-collision :
         // if (Physics.CheckSphere(finalPos + Vector3.up * 0.5f, 0.5f, obstacleMask)) return false;

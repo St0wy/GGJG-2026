@@ -24,7 +24,8 @@ public class EnemyController : MonoBehaviour
     public bool stickToGround = true;
     public float gravity = -20f;
 
-    private CharacterController cc;
+    //private CharacterController cc;
+    Rigidbody rb;
     private float t0;
     private float nextShotTime;
     private float yVel;
@@ -41,7 +42,8 @@ public class EnemyController : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         constraints = rigid.constraints;
 
-        cc = GetComponent<CharacterController>();
+        //cc = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
         t0 = Time.time;
         nextShotTime = Time.time + fireStartDelay;
     }
@@ -113,14 +115,16 @@ public class EnemyController : MonoBehaviour
         }
 
         // gravité + sol
-        if (stickToGround)
-        {
-            if (cc.isGrounded && yVel < 0f) yVel = -1f;
-            yVel += gravity * Time.deltaTime;
-            velocity.y = yVel;
-        }
+        //if (stickToGround)
+        //{
+        //    if (cc.isGrounded && yVel < 0f) yVel = -1f;
+        //    yVel += gravity * Time.deltaTime;
+        //    velocity.y = yVel;
+        //}
 
-        cc.Move(velocity * Time.deltaTime);
+        rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
+
+        //cc.Move(velocity * Time.deltaTime);
     }
 
     private void HandleShooting()

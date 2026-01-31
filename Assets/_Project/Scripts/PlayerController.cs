@@ -11,12 +11,15 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 8f;
     public float rotationSpeed = 20f;
     public float stickDeadzone = 0.2f;
+
     [Header("Shooting")]
     public float shootCooldown = 0.1f;
+
     [Header("Dash")]
     public float dashSpeed = 20f;
     public float dashDuration = 0.12f;
     public float dashCooldown = 0.4f;
+
     [Header("Knockback")]
     public float knockbackSpeed = 30f;
     public float knockbackDuration = 0.08f;
@@ -30,6 +33,11 @@ public class PlayerController : MonoBehaviour
     public EnemyShootPattern shootPattern;
     private GameManager game;
 
+    [Header("Audio")]
+    public AudioSource hurtAudio;
+    public AudioSource shootAudio;
+    public AudioSource dashAudio;
+
     InputAction moveStickAction;
     InputAction moveKeyboardAction;
     InputAction aimStickAction;
@@ -39,7 +47,6 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody rb;
     Health health;
-    AudioSource hurtAudio;
 
     Camera mainCamera;
 
@@ -130,6 +137,7 @@ public class PlayerController : MonoBehaviour
             {
                 timerShootCooldown = shootCooldown;
                 shootPattern.Fire(aimPoint, bulletPrefab, null);
+                shootAudio.Play();
             }
         }
 
@@ -148,6 +156,8 @@ public class PlayerController : MonoBehaviour
                 dashCooldownTimer = dashCooldown;
 
                 dashDirection = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
+
+                dashAudio.Play();
             }
         }
 

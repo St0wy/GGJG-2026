@@ -211,6 +211,7 @@ MonoBehaviour:
   visuals: {fileID: 516154431555982679}
   aimPoint: {fileID: 5960581776331966296}
   shootPattern: {fileID: 11400000, guid: 0eb56e592762f5c4d979630d0014cf91, type: 2}
+  hurtAudio: {fileID: 8236085214396702492}
 --- !u!136 &4716455188677399140
 CapsuleCollider:
   m_ObjectHideFlags: 0
