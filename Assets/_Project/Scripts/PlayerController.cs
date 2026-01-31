@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
         aimStickInput = aimStickAction.ReadValue<Vector2>();
         mousePos = aimMouseAction.ReadValue<Vector2>();
 
-        if (game.IsPaused || game.IsOvered) return;
+        if (game.IsPaused || game.IsOvered || !game.IsStarted) return;
 
         if (shootPattern != null && shootAction.IsPressed())
         {
