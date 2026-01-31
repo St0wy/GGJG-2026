@@ -7,62 +7,140 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 8f;
     public float rotationSpeed = 20f;
     public float stickDeadzone = 0.2f;
+    public float shootCooldown = 0.1f;
+    public float dashSpeed = 20f;
+    public float dashDuration = 0.12f;
+    public float dashCooldown = 0.4f;
 
-    InputAction moveAction;
+    public GameObject bulletPrefab;
+    public Transform aimPoint;
+    public EnemyShootPattern shootPattern;
+
+    InputAction moveStickAction;
+    InputAction moveKeyboardAction;
     InputAction aimStickAction;
     InputAction aimMouseAction;
+    InputAction shootAction;
+    InputAction dashAction;
 
     Rigidbody rb;
-
     Camera mainCamera;
 
-    Vector2 moveInput;
-    Vector2 stickInput;
+    Vector2 moveStickInput;
+    Vector2 moveKeyboardInput;
+    Vector2 aimStickInput;
     Vector2 mousePos;
     Vector2 oldMousePos;
+    Vector3 dashDirection;
+
+    float timerShootCooldown;
+    float dashTimer;
+    float dashCooldownTimer;
+
+    bool isUsingMouse;
+    bool isDashing;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
 
-        moveAction = InputSystem.actions.FindAction("Move");
+        moveStickAction = InputSystem.actions.FindAction("MoveStick");
+        moveKeyboardAction = InputSystem.actions.FindAction("MoveKeyboard");
         aimStickAction = InputSystem.actions.FindAction("AimStick");
         aimMouseAction = InputSystem.actions.FindAction("AimMouse");
+        shootAction = InputSystem.actions.FindAction("Shoot");
+        dashAction = InputSystem.actions.FindAction("Dash");
 
         mainCamera = Camera.main;
     }
 
     void OnEnable()
     {
-        moveAction.Enable();
+        moveStickAction.Enable();
+        moveKeyboardAction.Enable();
         aimStickAction.Enable();
         aimMouseAction.Enable();
+        shootAction.Enable();
+        dashAction.Enable();
     }
 
     void OnDisable()
     {
-        moveAction.Disable();
+        moveStickAction.Disable();
+        moveKeyboardAction.Disable();
         aimStickAction.Disable();
         aimMouseAction.Disable();
+        shootAction.Disable();
+        dashAction.Disable();
     }
 
     void Update()
     {
-        moveInput = moveAction.ReadValue<Vector2>();
-        stickInput = aimStickAction.ReadValue<Vector2>();
+        moveStickInput = moveStickAction.ReadValue<Vector2>();
+        moveKeyboardInput = moveKeyboardAction.ReadValue<Vector2>();
+        aimStickInput = aimStickAction.ReadValue<Vector2>();
         mousePos = aimMouseAction.ReadValue<Vector2>();
+
+        if (shootPattern != null && shootAction.IsPressed())
+        {
+            if (timerShootCooldown <= 0)
+            {
+                timerShootCooldown = shootCooldown;
+                shootPattern.Fire(aimPoint, bulletPrefab, null);
+            }
+        }
+
+        if (timerShootCooldown > 0) timerShootCooldown -= Time.deltaTime;
+        if (dashCooldownTimer > 0) dashCooldownTimer -= Time.deltaTime;
+
+        if (!isDashing && dashCooldownTimer <= 0f && dashAction.WasPressedThisFrame())
+        {
+            Vector2 moveInput = isUsingMouse ? moveKeyboardInput : moveStickInput;
+
+            if (moveInput.sqrMagnitude > stickDeadzone * stickDeadzone)
+            {
+                isDashing = true;
+                dashTimer = dashDuration;
+                dashCooldownTimer = dashCooldown;
+
+                dashDirection = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
+            }
+        }
+
     }
 
     void FixedUpdate()
     {
+        if (isDashing)
+        {
+            rb.linearVelocity = dashDirection * dashSpeed;
+
+            dashTimer -= Time.fixedDeltaTime;
+            if (dashTimer <= 0f)
+            {
+                isDashing = false;
+            }
+
+            // Skip normal movement while dashing
+            return;
+        }
+
+
+        float deadzoneSquared = stickDeadzone * stickDeadzone;
+
+        if (oldMousePos != mousePos) isUsingMouse = true;
+        if (moveKeyboardInput.sqrMagnitude > deadzoneSquared) isUsingMouse = true;
+        if (aimStickInput.sqrMagnitude > deadzoneSquared) isUsingMouse = false;
+        if (moveStickInput.sqrMagnitude > deadzoneSquared) isUsingMouse = false;
+
+        Vector2 moveInput = isUsingMouse ? moveKeyboardInput : moveStickInput;
+
         // Handle movement
         Vector3 velocity = new Vector3(moveInput.x, 0f, moveInput.y) * moveSpeed;
         rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
 
-        float deadzoneSquared = stickDeadzone * stickDeadzone;
-
         // Handle aim
-        if (stickInput.sqrMagnitude > deadzoneSquared)
+        if (!isUsingMouse)
         {
             // Aim using stick
 
@@ -70,14 +148,27 @@ public class PlayerController : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
-            Vector3 dir = new Vector3(stickInput.x, 0f, stickInput.y);
-            Quaternion target = Quaternion.LookRotation(dir);
+            if (aimStickInput.sqrMagnitude > deadzoneSquared)
+            {
+                Vector3 dir = new(aimStickInput.x, 0f, aimStickInput.y);
+                Quaternion target = Quaternion.LookRotation(dir);
 
-            rb.MoveRotation(
-                Quaternion.Slerp(rb.rotation, target, rotationSpeed * Time.fixedDeltaTime)
-            );
+                rb.MoveRotation(
+                    Quaternion.Slerp(rb.rotation, target, rotationSpeed * Time.fixedDeltaTime)
+                );
+            }
+            else if (moveStickInput.sqrMagnitude > deadzoneSquared)
+            {
+                // Aim in the move direction
+                Vector3 dir = new(moveStickInput.x, 0f, moveStickInput.y);
+                Quaternion target = Quaternion.LookRotation(dir);
+
+                rb.MoveRotation(
+                    Quaternion.Slerp(rb.rotation, target, rotationSpeed * Time.fixedDeltaTime)
+                );
+            }
         }
-        else if (oldMousePos != mousePos)
+        else
         {
             // Aim using mouse
 
@@ -86,7 +177,7 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
 
             Ray ray = mainCamera.ScreenPointToRay(mousePos);
-            Plane plane = new Plane(Vector3.up, transform.position);
+            Plane plane = new(Vector3.up, transform.position);
 
             if (!plane.Raycast(ray, out float dist))
                 return;
@@ -103,19 +194,6 @@ public class PlayerController : MonoBehaviour
 
             rb.MoveRotation(rotation);
             oldMousePos = mousePos;
-        } 
-        else if (moveInput.sqrMagnitude > deadzoneSquared)
-        {
-            // Aim in the move direction
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-
-            Vector3 dir = new Vector3(moveInput.x, 0f, moveInput.y);
-            Quaternion target = Quaternion.LookRotation(dir);
-
-            rb.MoveRotation(
-                Quaternion.Slerp(rb.rotation, target, rotationSpeed * Time.fixedDeltaTime)
-            );
         }
     }
 }
