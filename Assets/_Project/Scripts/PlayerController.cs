@@ -293,6 +293,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag(shardTag))
         {
             game.ShardIncrement();
+            Debug.Log("Adding shards");
             Destroy(other.gameObject);
         }
     }

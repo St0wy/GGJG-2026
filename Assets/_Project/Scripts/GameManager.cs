@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Score")]
     [SerializeField] private int shardMask;
+    public int currentShardGoal = 10;
 
     [Header("References")]
     private WaveSpawner spawner;
@@ -39,6 +40,15 @@ public class GameManager : MonoBehaviour
     public void ShardIncrement()
     {
         shardMask++;
+        if (shardMask >= currentShardGoal)
+        {
+            ShowWinScreen();
+        }
+    }
+
+    public void ShowWinScreen()
+    {
+        Debug.Log("YOU WIN");
     }
 
     public void GameOver()
@@ -47,8 +57,6 @@ public class GameManager : MonoBehaviour
         GameOverUI.SetActive(true);
         FindAnyObjectByType<WaveSpawner>().StopSpawnWave();
         overed = true;
-
-
     }
 
     private void Awake()
