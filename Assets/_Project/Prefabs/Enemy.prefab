@@ -64,6 +64,7 @@ MonoBehaviour:
   rotationSpeed: 8
   stickToGround: 1
   gravity: -20
+  hurtAudio: {fileID: 2327581599563552586}
 --- !u!33 &6986980884782633980
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -218,24 +219,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 1
-  destroyOnDeath: 1
+  destroyOnDeath: 0
   currentHealth: 0
   isInvicible: 0
   onDamage:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2327581599563552586}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onDeath:
     m_PersistentCalls:
       m_Calls: []

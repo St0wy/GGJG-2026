@@ -7,11 +7,11 @@ public class Health : MonoBehaviour
     public bool destroyOnDeath = true;
     public int currentHealth;
     public bool isInvicible;
+    public bool isDead;
 
     public UnityEvent<GameObject> onDamage;
-    public UnityEvent onDeath;
+    public UnityEvent<GameObject> onDeath;
 
-    bool isDead;
 
     void Awake()
     {
@@ -53,7 +53,7 @@ public class Health : MonoBehaviour
             return;
 
         isDead = true;
-        onDeath?.Invoke();
+        onDeath?.Invoke(gameObject);
 
         if (destroyOnDeath)
             Destroy(gameObject);

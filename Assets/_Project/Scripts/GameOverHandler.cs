@@ -16,7 +16,7 @@ public class GameOverHandler : MonoBehaviour
         if (playerHealth) playerHealth.onDeath.AddListener(OnDeath);
     }
 
-    private void OnDeath()
+    private void OnDeath(GameObject source)
     {
         GameManager.Instance.GameOver();
     }
