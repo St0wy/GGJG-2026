@@ -63,13 +63,6 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GameStartRoutine()
     {
-        paused = true;
-        // 1️⃣ Pause tous les ennemis
-        enemyManager.SetPausedAll(true);
-
-        // (optionnel) Pause d'autres systèmes ici
-        // PlayerController.Instance.SetPaused(true);
-
         // 2️⃣ Attente avant le début
         yield return new WaitForSeconds(startDelay);
 
@@ -80,8 +73,8 @@ public class GameManager : MonoBehaviour
         yield return null;
 
         // 4️⃣ Lancement du jeu
-        enemyManager.SetPausedAll(false);
         started = true;
+        enemyManager.SetPausedAll(false);
         paused = false;
     }
 

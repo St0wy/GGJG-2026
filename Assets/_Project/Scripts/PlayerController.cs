@@ -123,7 +123,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
         moveStickInput = moveStickAction.ReadValue<Vector2>();
         moveKeyboardInput = moveKeyboardAction.ReadValue<Vector2>();
         aimStickInput = aimStickAction.ReadValue<Vector2>();
@@ -184,7 +183,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (game.IsPaused && game.IsStarted) return;
+        if (game.IsPaused) return;
 
         if (isDashing)
         {
@@ -221,9 +220,6 @@ public class PlayerController : MonoBehaviour
         if (moveKeyboardInput.sqrMagnitude > deadzoneSquared) isUsingMouse = true;
         if (aimStickInput.sqrMagnitude > deadzoneSquared) isUsingMouse = false;
         if (moveStickInput.sqrMagnitude > deadzoneSquared) isUsingMouse = false;
-
-
-
 
         // Handle aim
         if (!isUsingMouse)
@@ -282,7 +278,7 @@ public class PlayerController : MonoBehaviour
             oldMousePos = mousePos;
         }
 
-        if (game.IsPaused) return;
+        if (!game.IsStarted) return;
 
         Vector2 moveInput = isUsingMouse ? moveKeyboardInput : moveStickInput;
 
