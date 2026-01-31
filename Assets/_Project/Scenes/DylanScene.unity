@@ -506,6 +506,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2976502537442546558, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 8765630053741706651, guid: 2c86743de7e109e49a2c39ae8ac033aa, type: 3}
     - target: {fileID: 8516509498662361573, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.27
