@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -31,11 +30,16 @@ public class EnemyController : MonoBehaviour
     private float yVel;
 
     EnemyManager manager;
+
     Rigidbody rigid;
+    RigidbodyConstraints constraints;
 
     private void Awake()
     {
         target = FindAnyObjectByType<PlayerController>().transform;
+        
+        rigid = GetComponent<Rigidbody>();
+        constraints = rigid.constraints;
 
         manager = EnemyManager.Instance;
         manager?.Register(this);
@@ -65,9 +69,11 @@ public class EnemyController : MonoBehaviour
         {
             // stop net
             yVel = 0f;
+            rigid.constraints = rigid.constraints | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         }
         else
         {
+            rigid.constraints = constraints;
             // resync timers pour éviter un tir instantané à la reprise
             nextShotTime = Time.time + fireStartDelay;
             t0 = Time.time; // optionnel: remet le pattern à zéro
