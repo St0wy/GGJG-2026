@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 909614401999098478}
   - component: {fileID: 7635648080848056654}
   - component: {fileID: 1185397125699043109}
+  - component: {fileID: -4806459745589406368}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Enemy
@@ -154,3 +155,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-4806459745589406368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8765630053741706651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92cd6f0a7e54fef47ab794d340e3867c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageOnTrigger
+  damageAmount: 1
+  tagToHurt: Player
+  destroyOnDamage: 1

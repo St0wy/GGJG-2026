@@ -169,4 +169,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageOnTrigger
   damageAmount: 1
   tagToHurt: Enemy
-  destroyOnDamage: 0
+  destroyOnDamage: 1

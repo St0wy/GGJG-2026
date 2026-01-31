@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 2976502537442546558}
   - component: {fileID: 4716455188677399140}
   - component: {fileID: 3073484883973820380}
-  - component: {fileID: 3163257136517458865}
   - component: {fileID: 4121708207551116087}
   m_Layer: 0
   m_Name: Player
@@ -203,7 +202,7 @@ MonoBehaviour:
   dashSpeed: 20
   dashDuration: 0.15
   dashCooldown: 0.5
-  bulletPrefab: {fileID: 8765630053741706651, guid: 699bb39be3b4048469ae9d73d3332900, type: 3}
+  bulletPrefab: {fileID: 8765630053741706651, guid: 2c86743de7e109e49a2c39ae8ac033aa, type: 3}
   aimPoint: {fileID: 5960581776331966296}
   shootPattern: {fileID: 11400000, guid: 0eb56e592762f5c4d979630d0014cf91, type: 2}
 --- !u!136 &4716455188677399140
@@ -256,28 +255,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &3163257136517458865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1816326578840627312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35446e30e174cb4a80ba4b24081e51d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 8
-  rotationSpeed: 20
-  stickDeadzone: 0.2
-  shootCooldown: 0.1
-  dashSpeed: 20
-  dashDuration: 0.15
-  dashCooldown: 0.5
-  bulletPrefab: {fileID: 0}
-  aimPoint: {fileID: 0}
-  shootPattern: {fileID: 0}
 --- !u!114 &4121708207551116087
 MonoBehaviour:
   m_ObjectHideFlags: 0

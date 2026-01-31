@@ -5,8 +5,8 @@ public class Health : MonoBehaviour
 {
     public int maxHealth = 5;
     public bool destroyOnDeath = true;
-
-    public int CurrentHealth { get; private set; }
+    public int currentHealth;
+    public bool isInvicible;
 
     public UnityEvent onDamage;
     public UnityEvent onDeath;
@@ -15,18 +15,18 @@ public class Health : MonoBehaviour
 
     void Awake()
     {
-        CurrentHealth = maxHealth;
+        currentHealth = maxHealth;
     }
 
     public void TakeDamage(int amount)
     {
-        if (isDead || amount <= 0)
+        if (isDead || amount <= 0 || isInvicible)
             return;
 
-        CurrentHealth -= amount;
+        currentHealth -= amount;
         onDamage?.Invoke();
 
-        if (CurrentHealth <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -37,13 +37,14 @@ public class Health : MonoBehaviour
         if (isDead || amount <= 0)
             return;
 
-        CurrentHealth = Mathf.Min(CurrentHealth + amount, maxHealth);
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
     }
 
     public void ResetHealth()
     {
         isDead = false;
-        CurrentHealth = maxHealth;
+        isInvicible = false;
+        currentHealth = maxHealth;
     }
 
     void Die()
