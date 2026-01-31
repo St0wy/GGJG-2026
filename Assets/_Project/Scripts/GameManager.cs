@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     //public InputActionReference pauseAction;
     InputAction pauseAction;
 
-    private bool started;
+    [SerializeField] private bool started;
     public bool IsStarted => started;
 
     [SerializeField] private bool paused = false;

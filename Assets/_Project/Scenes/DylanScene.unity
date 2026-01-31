@@ -1024,6 +1024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   startDelay: 3
   shardMask: 0
+  started: 0
   paused: 0
 --- !u!1 &1088517016
 GameObject:
@@ -1732,6 +1733,7 @@ MonoBehaviour:
     m_Bits: 8
   raycastStartHeight: 80
   raycastDistance: 200
+  enemyHeight: 0.5
   requireNavMeshPosition: 0
   navMeshSampleRadius: 2
   drawGizmos: 1
