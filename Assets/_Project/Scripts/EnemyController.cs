@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Health))]
 public class EnemyController : MonoBehaviour
 {
     [Header("Target")]
@@ -23,6 +25,7 @@ public class EnemyController : MonoBehaviour
     [Header("Movement")]
     public bool stickToGround = true;
     public float gravity = -20f;
+    public AudioSource hurtAudio;
 
     //private CharacterController cc;
     Rigidbody rb;
@@ -32,6 +35,7 @@ public class EnemyController : MonoBehaviour
 
     EnemyManager manager;
     GameManager gameManager;
+    Health health;
 
     Rigidbody rigid;
     RigidbodyConstraints constraints;
@@ -50,6 +54,32 @@ public class EnemyController : MonoBehaviour
         t0 = Time.time;
         nextShotTime = Time.time + fireStartDelay;
         gameManager = FindAnyObjectByType<GameManager>();
+
+        health = GetComponent<Health>();
+        health.onDamage.AddListener(OnDamage);
+        health.onDeath.AddListener(OnDeath);
+    }
+
+    private void OnDeath(GameObject source)
+    {
+        foreach (var c in GetComponents<Collider>())
+            c.enabled = false;
+        rb.isKinematic = true;
+
+        foreach (var r in GetComponentsInChildren<Renderer>())
+            r.enabled = false;
+
+        if (source.TryGetComponent(out SimpleProjectile projectile))
+        {
+            Destroy(projectile.gameObject);
+        }
+
+        Destroy(gameObject, 0.3f);
+    }
+
+    private void OnDamage(GameObject arg0)
+    {
+        hurtAudio.Play();
     }
 
     private void Start()
@@ -60,6 +90,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        if (health.isDead) return;
         if (gameManager.IsPaused) return;
         if (!gameManager.IsStarted) return;
         if (!oldStart && gameManager.IsStarted)
@@ -79,23 +110,6 @@ public class EnemyController : MonoBehaviour
     {
         if (manager) manager.Unregister(this);
     }
-
-    //public void SetPaused(bool paused)
-    //{
-    //    if (paused)
-    //    {
-    //        // stop net
-    //        yVel = 0f;
-    //        rigid.constraints = rigid.constraints | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-    //    }
-    //    else
-    //    {
-    //        rigid.constraints = constraints;
-    //        // resync timers pour éviter un tir instantané à la reprise
-    //        nextShotTime = Time.time + fireStartDelay;
-    //        t0 = Time.time; // optionnel: remet le pattern à zéro
-    //    }
-    //}
 
     private void HandleRotation()
     {

@@ -11,7 +11,6 @@ public class DamageOnTriggerAndCollision : MonoBehaviour
         HandleCollision(other);
     }
 
-
     private void OnCollisionEnter(Collision collision)
     {
         HandleCollision(collision.collider);
