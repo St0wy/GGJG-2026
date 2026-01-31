@@ -1,7 +1,8 @@
+using Spawner;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Spawner/Wave Pattern/Stream")]
+[CreateAssetMenu(menuName = "Spawner/Wave Pattern/Stream (Batch)")]
 public class WavePattern_Stream : WavePattern
 {
     public float interval = 0.5f;
@@ -12,7 +13,15 @@ public class WavePattern_Stream : WavePattern
 
         for (int i = 0; i < totalToSpawn; i++)
         {
-            yield return new SpawnPlanItem(interval, prefabs[Random.Range(0, prefabs.Length)]);
+            var prefab = prefabs[Random.Range(0, prefabs.Length)];
+
+            // batch de 1 ennemi, offset = 0 (le spawner le place au centre)
+            var batch = new[]
+            {
+                new SpawnRequest(prefab, Vector3.zero)
+            };
+
+            yield return new SpawnPlanItem(interval, batch);
         }
     }
 }

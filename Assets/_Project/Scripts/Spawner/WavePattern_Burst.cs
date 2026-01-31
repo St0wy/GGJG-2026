@@ -1,7 +1,8 @@
+using Spawner;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Spawner/Wave Pattern/Burst")]
+[CreateAssetMenu(menuName = "Spawner/Wave Pattern/Burst (Batch)")]
 public class WavePattern_Burst : WavePattern
 {
     public int burstSize = 5;
@@ -18,13 +19,26 @@ public class WavePattern_Burst : WavePattern
         {
             int current = Mathf.Min(burstSize, remaining);
 
+            // Spawns rapides (1 par 1)
             for (int i = 0; i < current; i++)
-                yield return new SpawnPlanItem(timeBetweenSpawnsInsideBurst, prefabs[Random.Range(0, prefabs.Length)]);
+            {
+                var prefab = prefabs[Random.Range(0, prefabs.Length)];
+
+                var batch = new[]
+                {
+                    new SpawnRequest(prefab, Vector3.zero)
+                };
+
+                yield return new SpawnPlanItem(timeBetweenSpawnsInsideBurst, batch);
+            }
 
             remaining -= current;
 
-            if (remaining > 0)
-                yield return new SpawnPlanItem(timeBetweenBursts, null); // "pause" (prefab null = no spawn)
+            // Pause entre bursts
+            if (remaining > 0 && timeBetweenBursts > 0f)
+            {
+                yield return new SpawnPlanItem(timeBetweenBursts, new SpawnRequest[0]); // batch vide = wait only
+            }
         }
     }
 }

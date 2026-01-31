@@ -78,23 +78,90 @@ public class WaveSpawner : MonoBehaviour
     {
         foreach (var item in wave.pattern.BuildPlan(wave.totalToSpawn, wave.enemyPrefabs))
         {
-            // pause planifiée (prefab null)
             if (item.delay > 0f)
                 yield return new WaitForSeconds(item.delay);
 
-            if (item.prefab == null)
+            if (item.batch == null || item.batch.Length == 0)
                 continue;
 
-            if (TryFindSpawnPosition(player.position, wave, out Vector3 pos, out Quaternion rot))
+            // On cherche UN centre valide pour le batch
+            if (!TryFindSpawnCenter(player.position, wave, out Vector3 center, out Quaternion facing))
             {
-                Instantiate(item.prefab, pos, rot);
+                Debug.LogWarning($"{name}: Could not find spawn center for wave '{wave.name}'.");
+                continue;
             }
-            else
+
+            // Spawn chaque élément du batch avec offsets
+            for (int i = 0; i < item.batch.Length; i++)
             {
-                // si pas trouvé, on skip (ou tu peux réduire le minDistance, etc.)
-                Debug.LogWarning($"{name}: Could not find valid spawn position for wave '{wave.name}'.");
+                var req = item.batch[i];
+                if (req.prefab == null) continue;
+
+                if (TryResolveOnGround(center, facing, req.localOffset, wave, out Vector3 pos))
+                {
+                    // Rotation : face au joueur (yaw only)
+                    Vector3 look = player.position - pos; look.y = 0f;
+                    Quaternion rot = (look.sqrMagnitude > 0.01f) ? Quaternion.LookRotation(look.normalized, Vector3.up) : Quaternion.identity;
+
+                    Instantiate(req.prefab, pos, rot);
+                }
             }
         }
+    }
+
+    private bool TryResolveOnGround(Vector3 center, Quaternion facing, Vector3 localOffset, WaveDefinition wave, out Vector3 finalPos)
+    {
+        // Offset en world space : la formation est orientée par "facing"
+        Vector3 worldOffset = facing * localOffset;
+
+        Vector3 candidate = center + worldOffset;
+
+        // Raycast down pour trouver le sol au bon endroit
+        Vector3 rayStart = candidate + Vector3.up * raycastStartHeight;
+        if (!Physics.Raycast(rayStart, Vector3.down, out RaycastHit hit, raycastDistance, groundMask))
+        {
+            finalPos = default;
+            return false;
+        }
+
+        finalPos = hit.point;
+
+        // Optionnel: tu peux rajouter ici un anti-collision :
+        // if (Physics.CheckSphere(finalPos + Vector3.up * 0.5f, 0.5f, obstacleMask)) return false;
+
+        return true;
+    }
+
+    private bool TryFindSpawnCenter(Vector3 playerPos, WaveDefinition wave, out Vector3 center, out Quaternion facing)
+    {
+        for (int i = 0; i < wave.maxTriesPerSpawn; i++)
+        {
+            Vector2 circle = Random.insideUnitCircle.normalized;
+            float dist = Random.Range(wave.minDistanceFromPlayer, wave.maxDistanceFromPlayer);
+            Vector3 candidateXZ = playerPos + new Vector3(circle.x, 0f, circle.y) * dist;
+
+            Vector3 rayStart = candidateXZ + Vector3.up * raycastStartHeight;
+            if (!Physics.Raycast(rayStart, Vector3.down, out RaycastHit hit, raycastDistance, groundMask))
+                continue;
+
+            Vector3 groundPos = hit.point;
+
+            // sécurité min
+            Vector3 flat = groundPos - playerPos; flat.y = 0f;
+            if (flat.magnitude < wave.minDistanceFromPlayer)
+                continue;
+
+            // rotation "facing" = regarde le joueur (yaw only)
+            Vector3 dir = playerPos - groundPos; dir.y = 0f;
+            facing = (dir.sqrMagnitude > 0.01f) ? Quaternion.LookRotation(dir.normalized, Vector3.up) : Quaternion.identity;
+
+            center = groundPos;
+            return true;
+        }
+
+        center = default;
+        facing = default;
+        return false;
     }
 
     private bool TryFindSpawnPosition(Vector3 playerPos, WaveDefinition wave, out Vector3 position, out Quaternion rotation)
