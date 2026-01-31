@@ -1,3 +1,10 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Label text="Ta maman" name="SM-label"/>
+    <ui:VisualElement name="Health" style="flex-grow: 1; width: 20%; height: 15%; position: absolute;">
+        <ui:Image source="project://database/Assets/_Project/Sprites/BarHealth_Empty.png?fileID=21300000&amp;guid=c648b1585a7fcd34a911830a34d818d8&amp;type=3#BarHealth_Empty" scale-mode="ScaleToFit" uv="0,0,1,1" name="Image" focusable="false" style="position: relative; width: 100%; height: 400%;"/>
+        <ui:Image source="project://database/Assets/_Project/Sprites/BarHealth_Full.png?fileID=21300000&amp;guid=743892f6093e8ad4e9675afc5504ed26&amp;type=3#BarHealth_Full" scale-mode="ScaleToFit" uv="0,0,1,1" style="position: absolute; width: 100%; height: 100%;"/>
+    </ui:VisualElement>
+    <ui:VisualElement name="ShardMask" style="flex-grow: 1; flex-direction: row; top: 10%; position: absolute; height: 10%; width: 25%;">
+        <ui:Image source="project://database/Assets/_Project/Sprites/ShardMask.png?fileID=21300000&amp;guid=2be70a3990c2b7b458b0e1893463d543&amp;type=3#ShardMask" scale-mode="ScaleToFit" uv="-0.1,0,1.1,1" style="width: 25%; height: 100%; left: 8%;"/>
+        <ui:Label text="Ta maman" name="SM-label" style="width: 75px; height: 100%; -unity-text-align: middle-left; -unity-font-style: bold; left: 12%; font-size: 22px;"/>
+    </ui:VisualElement>
 </ui:UXML>
