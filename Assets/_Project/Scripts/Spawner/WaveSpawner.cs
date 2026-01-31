@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class WaveSpawner : MonoBehaviour
 {
+    #region Public Data
     [Header("Target")]
     public Transform player;
 
@@ -25,10 +26,14 @@ public class WaveSpawner : MonoBehaviour
 
     [Header("Debug")]
     public bool drawGizmos = true;
+    #endregion
 
+    #region Private Data
     private int waveIndex;
     private Coroutine routine;
+    #endregion
 
+    #region Mono
     private void OnEnable()
     {
         if (routine == null && waves != null && waves.Length > 0)
@@ -41,6 +46,29 @@ public class WaveSpawner : MonoBehaviour
         routine = null;
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        if (!drawGizmos || player == null || waves == null || waves.Length == 0) return;
+
+        var w = waves[Mathf.Clamp(waveIndex, 0, waves.Length - 1)];
+        if (w == null) return;
+
+        Gizmos.DrawWireSphere(player.position, w.minDistanceFromPlayer);
+        Gizmos.DrawWireSphere(player.position, w.maxDistanceFromPlayer);
+    }
+
+    #endregion
+
+    #region Public Method
+    public void SpawnFirstWave()
+    {
+        StopAllCoroutines();
+        StartCoroutine(SpawnWave(waves[0]));
+    }
+
+    #endregion
+
+    #region Private Method
     private IEnumerator RunWaves()
     {
         if (player == null)
@@ -163,64 +191,6 @@ public class WaveSpawner : MonoBehaviour
         facing = default;
         return false;
     }
+    #endregion
 
-    private bool TryFindSpawnPosition(Vector3 playerPos, WaveDefinition wave, out Vector3 position, out Quaternion rotation)
-    {
-        for (int i = 0; i < wave.maxTriesPerSpawn; i++)
-        {
-            // point aléatoire dans un anneau (min/max distance)
-            Vector2 circle = Random.insideUnitCircle.normalized;
-            float dist = Random.Range(wave.minDistanceFromPlayer, wave.maxDistanceFromPlayer);
-            Vector3 candidateXZ = playerPos + new Vector3(circle.x, 0f, circle.y) * dist;
-
-            // Raycast du haut vers le bas pour tomber sur le terrain
-            Vector3 rayStart = candidateXZ + Vector3.up * raycastStartHeight;
-            if (!Physics.Raycast(rayStart, Vector3.down, out RaycastHit hit, raycastDistance, groundMask))
-                continue;
-
-            Vector3 groundPos = hit.point;
-
-            // Option NavMesh (si tes ennemis utilisent NavMeshAgent)
-            if (requireNavMeshPosition)
-            {
-#if UNITY_AI_NAVIGATION
-                if (!NavMesh.SamplePosition(groundPos, out NavMeshHit navHit, navMeshSampleRadius, NavMesh.AllAreas))
-                    continue;
-
-                groundPos = navHit.position;
-#else
-                // si le package NavMesh n'est pas dispo, on ignore
-                continue;
-#endif
-            }
-
-            // Sécurité finale: check distance min
-            Vector3 flat = groundPos - playerPos; flat.y = 0f;
-            if (flat.magnitude < wave.minDistanceFromPlayer)
-                continue;
-
-            position = groundPos;
-
-            // rotation: regarde vers le joueur sur Y uniquement
-            Vector3 look = playerPos - position; look.y = 0f;
-            rotation = (look.sqrMagnitude > 0.01f) ? Quaternion.LookRotation(look.normalized, Vector3.up) : Quaternion.identity;
-
-            return true;
-        }
-
-        position = default;
-        rotation = default;
-        return false;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (!drawGizmos || player == null || waves == null || waves.Length == 0) return;
-
-        var w = waves[Mathf.Clamp(waveIndex, 0, waves.Length - 1)];
-        if (w == null) return;
-
-        Gizmos.DrawWireSphere(player.position, w.minDistanceFromPlayer);
-        Gizmos.DrawWireSphere(player.position, w.maxDistanceFromPlayer);
-    }
 }

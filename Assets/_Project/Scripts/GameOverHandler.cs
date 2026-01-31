@@ -14,7 +14,6 @@ public class GameOverHandler : MonoBehaviour
         }
 
         if (playerHealth) playerHealth.onDeath.AddListener(OnDeath);
-        if (playerHealth) playerHealth.destroyOnDeath = true;
     }
 
     private void OnDeath()

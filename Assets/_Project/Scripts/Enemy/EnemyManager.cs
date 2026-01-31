@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public static EnemyManager Instance { get; private set; }
-
     [SerializeField] private bool paused;
+    public bool IsPaused => paused;
+    public static EnemyManager Instance { get; private set; }
     private readonly List<EnemyController> enemies = new();
 
-    public bool IsPaused => paused;
+
     public IReadOnlyList<EnemyController> Enemies => enemies;
 
     private void Awake()

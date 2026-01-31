@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public GameObject visuals;
     public Transform aimPoint;
     public EnemyShootPattern shootPattern;
+    private GameManager game;
 
     InputAction moveStickAction;
     InputAction moveKeyboardAction;
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         health = GetComponent<Health>();
         health.onDamage.AddListener(OnDamage);
+        game = FindAnyObjectByType<GameManager>();
 
         moveStickAction = InputSystem.actions.FindAction("MoveStick");
         moveKeyboardAction = InputSystem.actions.FindAction("MoveKeyboard");
@@ -109,10 +111,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
         moveStickInput = moveStickAction.ReadValue<Vector2>();
         moveKeyboardInput = moveKeyboardAction.ReadValue<Vector2>();
         aimStickInput = aimStickAction.ReadValue<Vector2>();
         mousePos = aimMouseAction.ReadValue<Vector2>();
+
+        if (game.IsPaused) return;
 
         if (shootPattern != null && shootAction.IsPressed())
         {
@@ -164,6 +169,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (game.IsPaused && game.IsStarted) return;
+
         if (isDashing)
         {
             rb.linearVelocity = dashDirection * dashSpeed;
@@ -200,11 +207,8 @@ public class PlayerController : MonoBehaviour
         if (aimStickInput.sqrMagnitude > deadzoneSquared) isUsingMouse = false;
         if (moveStickInput.sqrMagnitude > deadzoneSquared) isUsingMouse = false;
 
-        Vector2 moveInput = isUsingMouse ? moveKeyboardInput : moveStickInput;
 
-        // Handle movement
-        Vector3 velocity = new Vector3(moveInput.x, 0f, moveInput.y) * moveSpeed;
-        rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
+
 
         // Handle aim
         if (!isUsingMouse)
@@ -262,5 +266,13 @@ public class PlayerController : MonoBehaviour
             rb.MoveRotation(rotation);
             oldMousePos = mousePos;
         }
+
+        if (game.IsPaused) return;
+
+        Vector2 moveInput = isUsingMouse ? moveKeyboardInput : moveStickInput;
+
+        // Handle movement
+        Vector3 velocity = new Vector3(moveInput.x, 0f, moveInput.y) * moveSpeed;
+        rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
     }
 }

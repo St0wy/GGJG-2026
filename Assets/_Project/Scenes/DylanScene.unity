@@ -299,6 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf33a6b6074f2354ea57f31dc4215332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShardMaskUI_Binding
+  game: {fileID: 0}
 --- !u!1 &180636744
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,8 +973,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 879220040}
-  - component: {fileID: 879220039}
   - component: {fileID: 879220041}
+  - component: {fileID: 879220039}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1021,7 +1022,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036a4e02ad7cd014a9f373f17033b8e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  shardMask: 500
+  startDelay: 3
+  shardMask: 0
+  pauseAction: {fileID: 7977854703085161447, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  paused: 0
 --- !u!1 &1088517016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1723,8 +1727,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 2038242410}
   - {fileID: 2076962502}
-  - {fileID: 368805117}
+  - {fileID: 58699882}
   - {fileID: 1635543317}
+  - {fileID: 368805117}
   - {fileID: 2086381883}
   - {fileID: 879220040}
-  - {fileID: 58699882}
