@@ -198,11 +198,16 @@ MonoBehaviour:
   moveSpeed: 8
   rotationSpeed: 20
   stickDeadzone: 0.2
-  shootCooldown: 0.1
+  shootCooldown: 0.3
   dashSpeed: 20
   dashDuration: 0.15
   dashCooldown: 0.5
+  knockbackSpeed: 30
+  knockbackDuration: 0.08
+  invicibilityDuration: 1
+  blinkSpeed: 0.1
   bulletPrefab: {fileID: 8765630053741706651, guid: 2c86743de7e109e49a2c39ae8ac033aa, type: 3}
+  visuals: {fileID: 516154431555982679}
   aimPoint: {fileID: 5960581776331966296}
   shootPattern: {fileID: 11400000, guid: 0eb56e592762f5c4d979630d0014cf91, type: 2}
 --- !u!136 &4716455188677399140
@@ -253,7 +258,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 1
 --- !u!114 &4121708207551116087
 MonoBehaviour:
@@ -269,6 +274,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 5
   destroyOnDeath: 0
+  currentHealth: 0
+  isInvicible: 0
   onDamage:
     m_PersistentCalls:
       m_Calls: []

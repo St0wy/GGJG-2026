@@ -41,12 +41,15 @@ public class EnemyController : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         constraints = rigid.constraints;
 
-        manager = EnemyManager.Instance;
-        manager?.Register(this);
-
         cc = GetComponent<CharacterController>();
         t0 = Time.time;
         nextShotTime = Time.time + fireStartDelay;
+    }
+
+    private void Start()
+    {
+        manager = EnemyManager.Instance;
+        if (manager) manager.Register(this);
     }
 
     private void Update()
@@ -60,7 +63,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnDestroy()
     {
-        manager?.Unregister(this);
+        if (manager) manager.Unregister(this);
     }
 
     public void SetPaused(bool paused)
