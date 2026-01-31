@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c98ae1ddf9309454488d261675594e29, type: 3}
-  m_Name: ShootPatern_Spread_ForwardNoY
-  m_EditorClassIdentifier: Assembly-CSharp::ShootPattern_Spread_ForwardNoY
-  bullets: 5
-  angleDegrees: 30
-  muzzleSpeed: 18
+  m_Script: {fileID: 11500000, guid: 80b4c07a6b8f5ab45a2932ab74280edf, type: 3}
+  m_Name: WavePater_Stream
+  m_EditorClassIdentifier: Assembly-CSharp::WavePattern_Stream
+  interval: 0.5

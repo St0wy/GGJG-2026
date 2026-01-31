@@ -31,6 +31,8 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        target = FindAnyObjectByType<PlayerController>().transform;
+
         cc = GetComponent<CharacterController>();
         t0 = Time.time;
         nextShotTime = Time.time + fireStartDelay;

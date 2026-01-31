@@ -20,6 +20,7 @@ public class ShootPattern_Spread_ForwardNoY : EnemyShootPattern
         if (baseDir.sqrMagnitude < 0.0001f)
             baseDir = firePoint.parent ? firePoint.parent.forward : Vector3.forward;
 
+
         baseDir.y = 0f;
         baseDir.Normalize();
 
