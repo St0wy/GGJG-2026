@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 381a8425c1a78e64b81fef83ac29eae1, type: 3}
   m_Name: WavePatern_Start
   m_EditorClassIdentifier: Assembly-CSharp::WavePattern_FormationStart
-  shape: 3
-  formationCount: 12
-  spacing: 1
+  shape: 2
+  formationCount: 8
+  spacing: 1.2
   rectColumns: 4
   centerRectangle: 1
   clusterRadius: 3.5

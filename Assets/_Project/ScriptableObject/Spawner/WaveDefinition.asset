@@ -16,6 +16,6 @@ MonoBehaviour:
   totalToSpawn: 8
   enemyPrefabs:
   - {fileID: 7305922326506502481, guid: 21609b48c5bd5624d8a44a1854ef183b, type: 3}
-  minDistanceFromPlayer: 8
-  maxDistanceFromPlayer: 10
+  minDistanceFromPlayer: 10
+  maxDistanceFromPlayer: 15
   maxTriesPerSpawn: 25

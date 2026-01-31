@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -29,9 +30,15 @@ public class EnemyController : MonoBehaviour
     private float nextShotTime;
     private float yVel;
 
+    EnemyManager manager;
+    Rigidbody rigid;
+
     private void Awake()
     {
         target = FindAnyObjectByType<PlayerController>().transform;
+
+        manager = EnemyManager.Instance;
+        manager?.Register(this);
 
         cc = GetComponent<CharacterController>();
         t0 = Time.time;
@@ -40,9 +47,31 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        if (manager.IsPaused) return;
+
         HandleRotation();
         HandleMovement();
         HandleShooting();
+    }
+
+    private void OnDestroy()
+    {
+        manager?.Unregister(this);
+    }
+
+    public void SetPaused(bool paused)
+    {
+        if (paused)
+        {
+            // stop net
+            yVel = 0f;
+        }
+        else
+        {
+            // resync timers pour éviter un tir instantané à la reprise
+            nextShotTime = Time.time + fireStartDelay;
+            t0 = Time.time; // optionnel: remet le pattern à zéro
+        }
     }
 
     private void HandleRotation()

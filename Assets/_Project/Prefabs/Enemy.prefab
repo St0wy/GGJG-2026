@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6986980884782633980}
   - component: {fileID: 9061426179314093750}
   - component: {fileID: 1522901524882340277}
+  - component: {fileID: 6479317627900149859}
   - component: {fileID: 4216396830512974795}
   - component: {fileID: 8190305698662678538}
   - component: {fileID: 9203361200190888285}
@@ -86,6 +87,7 @@ MonoBehaviour:
   fireStartDelay: 0.4
   rotateTowardTarget: 1
   rotationSpeed: 8
+  isPaused: 0
   stickToGround: 1
   gravity: -20
 --- !u!33 &6986980884782633980
@@ -160,11 +162,32 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.8
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!135 &6479317627900149859
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305922326506502481}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4216396830512974795
 Rigidbody:
@@ -222,6 +245,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 1
   destroyOnDeath: 1
+  currentHealth: 0
+  isInvicible: 0
   onDamage:
     m_PersistentCalls:
       m_Calls: []
