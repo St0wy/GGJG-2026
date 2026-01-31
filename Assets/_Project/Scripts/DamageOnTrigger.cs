@@ -10,6 +10,7 @@ public class DamageOnTrigger : MonoBehaviour
     {
         if (other.TryGetComponent(out Health health))
         {
+            if (!health.CompareTag(tagToHurt)) return;
             health.TakeDamage(damageAmount);
             if (destroyOnDamage) Destroy(gameObject);
         }
