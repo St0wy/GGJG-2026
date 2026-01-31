@@ -242,6 +242,7 @@ GameObject:
   - component: {fileID: 58699882}
   - component: {fileID: 58699881}
   - component: {fileID: 58699883}
+  - component: {fileID: 58699884}
   m_Layer: 5
   m_Name: UIMain
   m_TagString: Untagged
@@ -300,6 +301,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShardMaskUI_Binding
   game: {fileID: 0}
+--- !u!114 &58699884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58699880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b9ed91b9a03714fb4451e20fe4835c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthBarUI
+  health: {fileID: 1146968264}
 --- !u!1 &180636744
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +589,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1816326578840627312, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2976502537442546558, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
       propertyPath: bulletPrefab
       value: 
@@ -582,6 +600,10 @@ PrefabInstance:
     - target: {fileID: 3073484883973820380, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
       propertyPath: m_Constraints
       value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 4121708207551116087, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
+      propertyPath: destroyOnDeath
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8516509498662361573, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
       propertyPath: m_LocalPosition.x
@@ -975,6 +997,7 @@ GameObject:
   - component: {fileID: 879220040}
   - component: {fileID: 879220041}
   - component: {fileID: 879220039}
+  - component: {fileID: 879220042}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1026,8 +1049,22 @@ MonoBehaviour:
   shardMask: 0
   started: 0
   paused: 0
-  MainUI: {fileID: 0}
-  GameOverUI: {fileID: 0}
+  overed: 0
+  MainUI: {fileID: 58699880}
+  GameOverUI: {fileID: 1500732933}
+--- !u!114 &879220042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879220038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6582a6f2a6cb4984a864db8d6fc43846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOverHandler
+  playerHealth: {fileID: 1146968264}
 --- !u!1 &1088517016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,6 +1182,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8516509498662361573, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
   m_PrefabInstance: {fileID: 368805117}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1146968264 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4121708207551116087, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
+  m_PrefabInstance: {fileID: 368805117}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe4c054cda81b21438f587bb0c785673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
 --- !u!1 &1386070790
 GameObject:
   m_ObjectHideFlags: 0

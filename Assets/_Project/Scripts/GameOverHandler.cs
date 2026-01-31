@@ -18,6 +18,7 @@ public class GameOverHandler : MonoBehaviour
 
     private void OnDeath(GameObject source)
     {
+        Debug.Log("Game over lol");
         GameManager.Instance.GameOver();
     }
 }

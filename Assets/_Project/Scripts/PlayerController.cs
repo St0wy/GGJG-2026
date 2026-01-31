@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
         aimStickInput = aimStickAction.ReadValue<Vector2>();
         mousePos = aimMouseAction.ReadValue<Vector2>();
 
-        if (game.IsPaused) return;
+        if (game.IsPaused || game.IsOvered) return;
 
         if (shootPattern != null && shootAction.IsPressed())
         {
@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (game.IsPaused) return;
+        if (game.IsPaused || game.IsOvered) return;
 
         if (isDashing)
         {

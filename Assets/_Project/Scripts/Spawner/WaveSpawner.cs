@@ -103,6 +103,11 @@ public class WaveSpawner : MonoBehaviour
         } while (true);
     }
 
+    public void StopSpawnWave()
+    {
+        StopAllCoroutines();
+    }
+
     private IEnumerator SpawnWave(WaveDefinition wave)
     {
         foreach (var item in wave.pattern.BuildPlan(wave.totalToSpawn, wave.enemyPrefabs))

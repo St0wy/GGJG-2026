@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -93,6 +92,7 @@ public class EnemyController : MonoBehaviour
         if (health.isDead) return;
         if (gameManager.IsPaused) return;
         if (!gameManager.IsStarted) return;
+        if (gameManager.IsOvered) return;
         if (!oldStart && gameManager.IsStarted)
         {
             nextShotTime = Time.time + fireStartDelay;

@@ -18,13 +18,19 @@ public class GameManager : MonoBehaviour
     private WaveSpawner spawner;
     private EnemyManager enemyManager;
 
-    InputAction pauseAction;
+    [Header("Action")]
+    
+    private InputAction pauseAction;
 
     [SerializeField] private bool started;
-    public bool IsStarted => started;
-
     [SerializeField] private bool paused = false;
+    [SerializeField] private bool overed = false;
+    public bool IsStarted => started;
+ 
     public bool IsPaused => paused;
+ 
+    public bool IsOvered => overed;
+
     public int ShardMask { get => shardMask; }
 
     [SerializeField] GameObject MainUI;
@@ -39,6 +45,10 @@ public class GameManager : MonoBehaviour
     {
         MainUI.SetActive(false);
         GameOverUI.SetActive(true);
+        FindAnyObjectByType<WaveSpawner>().StopSpawnWave();
+        overed = true;
+
+
     }
 
     private void Awake()

@@ -1,7 +1,11 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="Health" style="flex-grow: 1; width: 20%; height: 15%; position: absolute;">
-        <ui:Image source="project://database/Assets/_Project/Sprites/BarHealth_Empty.png?fileID=21300000&amp;guid=c648b1585a7fcd34a911830a34d818d8&amp;type=3#BarHealth_Empty" scale-mode="ScaleToFit" uv="0,0,1,1" name="Image" focusable="false" style="position: relative; width: 100%; height: 400%;"/>
-        <ui:Image source="project://database/Assets/_Project/Sprites/BarHealth_Full.png?fileID=21300000&amp;guid=743892f6093e8ad4e9675afc5504ed26&amp;type=3#BarHealth_Full" scale-mode="ScaleToFit" uv="0,0,1,1" style="position: absolute; width: 100%; height: 100%;"/>
+    <ui:VisualElement name="Health" style="flex-grow: 1; width: 50%; height: 15%; position: absolute;">
+        <ui:VisualElement style="flex-grow: 1; width: 100px; height: 100%; background-image: url(&quot;project://database/Assets/_Project/Sprites/StarHealth.png?fileID=2800000&amp;guid=ffb5a532108929b47b5559ed768f17c9&amp;type=3#StarHealth&quot;);"/>
+        <ui:Image tabindex="0" name="HealthBarBackground" style="position: absolute; background-image: url(&quot;project://database/Assets/_Project/Sprites/BarHealth-Empty.png?fileID=2800000&amp;guid=9321f2b2abdb2f744b34e1e7f62e2761&amp;type=3#BarHealth-Empty&quot;); overflow: visible; -unity-background-scale-mode: scale-to-fit; width: 250px; height: 100%; left: 100px;">
+            <ui:VisualElement name="HealthBarMask" style="flex-grow: 1; width: 100%; height: 100%; overflow: hidden; position: absolute;">
+                <ui:VisualElement name="HealthBarFill" style="background-image: url(&quot;project://database/Assets/_Project/Sprites/BarHealth-Fill.png?fileID=2800000&amp;guid=a0adb5eb04ee10340a205f709636ebd7&amp;type=3#BarHealth-Fill&quot;); overflow: hidden; position: absolute; width: 250px; height: 100%; -unity-background-scale-mode: scale-to-fit;"/>
+            </ui:VisualElement>
+        </ui:Image>
     </ui:VisualElement>
     <ui:VisualElement name="ShardMask" style="flex-grow: 1; flex-direction: row; top: 10%; position: absolute; height: 10%; width: 25%;">
         <ui:Image source="project://database/Assets/_Project/Sprites/ShardMask.png?fileID=21300000&amp;guid=2be70a3990c2b7b458b0e1893463d543&amp;type=3#ShardMask" scale-mode="ScaleToFit" uv="-0.1,0,1.1,1" style="width: 25%; height: 100%; left: 8%;"/>
