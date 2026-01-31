@@ -429,10 +429,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2976502537442546558, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
-      propertyPath: shootPattern
-      value: 
-      objectReference: {fileID: 11400000, guid: 0eb56e592762f5c4d979630d0014cf91, type: 2}
     - target: {fileID: 8516509498662361573, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

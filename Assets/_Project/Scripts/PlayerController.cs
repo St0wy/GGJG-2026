@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
@@ -9,6 +8,10 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 20f;
     public float stickDeadzone = 0.2f;
     public float shootCooldown = 0.1f;
+    public float dashSpeed = 20f;
+    public float dashDuration = 0.12f;
+    public float dashCooldown = 0.4f;
+
     public GameObject bulletPrefab;
     public Transform aimPoint;
     public EnemyShootPattern shootPattern;
@@ -18,9 +21,9 @@ public class PlayerController : MonoBehaviour
     InputAction aimStickAction;
     InputAction aimMouseAction;
     InputAction shootAction;
+    InputAction dashAction;
 
     Rigidbody rb;
-
     Camera mainCamera;
 
     Vector2 moveStickInput;
@@ -28,10 +31,14 @@ public class PlayerController : MonoBehaviour
     Vector2 aimStickInput;
     Vector2 mousePos;
     Vector2 oldMousePos;
+    Vector3 dashDirection;
 
     float timerShootCooldown;
+    float dashTimer;
+    float dashCooldownTimer;
 
     bool isUsingMouse;
+    bool isDashing;
 
     void Awake()
     {
@@ -42,6 +49,7 @@ public class PlayerController : MonoBehaviour
         aimStickAction = InputSystem.actions.FindAction("AimStick");
         aimMouseAction = InputSystem.actions.FindAction("AimMouse");
         shootAction = InputSystem.actions.FindAction("Shoot");
+        dashAction = InputSystem.actions.FindAction("Dash");
 
         mainCamera = Camera.main;
     }
@@ -53,6 +61,7 @@ public class PlayerController : MonoBehaviour
         aimStickAction.Enable();
         aimMouseAction.Enable();
         shootAction.Enable();
+        dashAction.Enable();
     }
 
     void OnDisable()
@@ -62,6 +71,7 @@ public class PlayerController : MonoBehaviour
         aimStickAction.Disable();
         aimMouseAction.Disable();
         shootAction.Disable();
+        dashAction.Disable();
     }
 
     void Update()
@@ -81,10 +91,41 @@ public class PlayerController : MonoBehaviour
         }
 
         if (timerShootCooldown > 0) timerShootCooldown -= Time.deltaTime;
+        if (dashCooldownTimer > 0) dashCooldownTimer -= Time.deltaTime;
+
+        if (!isDashing && dashCooldownTimer <= 0f && dashAction.WasPressedThisFrame())
+        {
+            Vector2 moveInput = isUsingMouse ? moveKeyboardInput : moveStickInput;
+
+            if (moveInput.sqrMagnitude > stickDeadzone * stickDeadzone)
+            {
+                isDashing = true;
+                dashTimer = dashDuration;
+                dashCooldownTimer = dashCooldown;
+
+                dashDirection = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
+            }
+        }
+
     }
 
     void FixedUpdate()
     {
+        if (isDashing)
+        {
+            rb.linearVelocity = dashDirection * dashSpeed;
+
+            dashTimer -= Time.fixedDeltaTime;
+            if (dashTimer <= 0f)
+            {
+                isDashing = false;
+            }
+
+            // Skip normal movement while dashing
+            return;
+        }
+
+
         float deadzoneSquared = stickDeadzone * stickDeadzone;
 
         if (oldMousePos != mousePos) isUsingMouse = true;
