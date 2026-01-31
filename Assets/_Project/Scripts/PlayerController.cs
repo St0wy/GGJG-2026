@@ -1,18 +1,30 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Health))]
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movement")]
     public float moveSpeed = 8f;
     public float rotationSpeed = 20f;
     public float stickDeadzone = 0.2f;
+    [Header("Shooting")]
     public float shootCooldown = 0.1f;
+    [Header("Dash")]
     public float dashSpeed = 20f;
     public float dashDuration = 0.12f;
     public float dashCooldown = 0.4f;
+    [Header("Knockback")]
+    public float knockbackSpeed = 30f;
+    public float knockbackDuration = 0.08f;
+    public float invicibilityDuration = 1f;
+    public float blinkSpeed = 0.1f;
 
+    [Header("Refs")]
     public GameObject bulletPrefab;
+    public GameObject visuals;
     public Transform aimPoint;
     public EnemyShootPattern shootPattern;
 
@@ -24,6 +36,7 @@ public class PlayerController : MonoBehaviour
     InputAction dashAction;
 
     Rigidbody rb;
+    Health health;
     Camera mainCamera;
 
     Vector2 moveStickInput;
@@ -32,17 +45,25 @@ public class PlayerController : MonoBehaviour
     Vector2 mousePos;
     Vector2 oldMousePos;
     Vector3 dashDirection;
+    Vector3 knockbackDirection;
 
     float timerShootCooldown;
     float dashTimer;
     float dashCooldownTimer;
+    float knockbackTimer;
+    float invicibilityTimer;
+    float blinkTimer;
 
     bool isUsingMouse;
     bool isDashing;
+    bool isKnockbacking;
+    bool isVisible = true;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        health = GetComponent<Health>();
+        health.onDamage.AddListener(OnDamage);
 
         moveStickAction = InputSystem.actions.FindAction("MoveStick");
         moveKeyboardAction = InputSystem.actions.FindAction("MoveKeyboard");
@@ -52,6 +73,16 @@ public class PlayerController : MonoBehaviour
         dashAction = InputSystem.actions.FindAction("Dash");
 
         mainCamera = Camera.main;
+    }
+
+    private void OnDamage(GameObject source)
+    {
+        knockbackDirection = Vector3.Normalize(transform.position - source.transform.position);
+        knockbackTimer = knockbackDuration;
+        isKnockbacking = true;
+        health.isInvicible = true;
+        invicibilityTimer = invicibilityDuration;
+        blinkTimer = blinkSpeed;
     }
 
     void OnEnable()
@@ -99,6 +130,7 @@ public class PlayerController : MonoBehaviour
 
             if (moveInput.sqrMagnitude > stickDeadzone * stickDeadzone)
             {
+                health.isInvicible = true;
                 isDashing = true;
                 dashTimer = dashDuration;
                 dashCooldownTimer = dashCooldown;
@@ -107,6 +139,25 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+
+        if (invicibilityTimer > 0)
+        {
+            blinkTimer -= Time.deltaTime;
+            if (blinkTimer <= 0)
+            {
+                blinkTimer = blinkSpeed;
+                isVisible = !isVisible;
+                visuals.SetActive(isVisible);
+            }
+
+            invicibilityTimer -= Time.deltaTime;
+            if (invicibilityTimer <= 0)
+            {
+                health.isInvicible = false;
+                isVisible = true;
+                visuals.SetActive(isVisible);
+            }
+        }
     }
 
     void FixedUpdate()
@@ -118,10 +169,24 @@ public class PlayerController : MonoBehaviour
             dashTimer -= Time.fixedDeltaTime;
             if (dashTimer <= 0f)
             {
+                health.isInvicible = false;
                 isDashing = false;
             }
 
             // Skip normal movement while dashing
+            return;
+        }
+
+        if (isKnockbacking)
+        {
+            rb.linearVelocity = knockbackDirection * knockbackSpeed;
+            knockbackTimer -= Time.fixedDeltaTime;
+            if (knockbackTimer <= 0f)
+            {
+                isKnockbacking = false;
+            }
+
+            // Skip normal movement while knockbacking
             return;
         }
 

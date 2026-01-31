@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
     public int currentHealth;
     public bool isInvicible;
 
-    public UnityEvent onDamage;
+    public UnityEvent<GameObject> onDamage;
     public UnityEvent onDeath;
 
     bool isDead;
@@ -18,13 +18,13 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount, GameObject source)
     {
         if (isDead || amount <= 0 || isInvicible)
             return;
 
         currentHealth -= amount;
-        onDamage?.Invoke();
+        onDamage?.Invoke(source);
 
         if (currentHealth <= 0)
         {
