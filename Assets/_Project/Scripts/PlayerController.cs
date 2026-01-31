@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     public GameObject visuals;
     public Transform aimPoint;
     public EnemyShootPattern shootPattern;
-    private GameManager game;
+    public string shardTag = "Shard";
 
     [Header("Audio")]
     public AudioSource hurtAudio;
@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     Health health;
 
     Camera mainCamera;
+    GameManager game;
 
     Vector2 moveStickInput;
     Vector2 moveKeyboardInput;
@@ -285,5 +286,14 @@ public class PlayerController : MonoBehaviour
         // Handle movement
         Vector3 velocity = new Vector3(moveInput.x, 0f, moveInput.y) * moveSpeed;
         rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(shardTag))
+        {
+            game.ShardIncrement();
+            Destroy(other.gameObject);
+        }
     }
 }

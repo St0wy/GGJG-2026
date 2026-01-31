@@ -27,6 +27,8 @@ public class EnemyController : MonoBehaviour
     public float gravity = -20f;
     public AudioSource hurtAudio;
 
+    public GameObject shardPrefab;
+
     //private CharacterController cc;
     Rigidbody rb;
     private float t0;
@@ -75,6 +77,7 @@ public class EnemyController : MonoBehaviour
         }
 
         Destroy(gameObject, 0.3f);
+        Instantiate(shardPrefab, transform.position, Quaternion.identity);
     }
 
     private void OnDamage(GameObject arg0)

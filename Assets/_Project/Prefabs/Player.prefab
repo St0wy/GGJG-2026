@@ -208,7 +208,7 @@ MonoBehaviour:
   knockbackDuration: 0.08
   invicibilityDuration: 1
   blinkSpeed: 0.1
-  bulletPrefab: {fileID: 8765630053741706651, guid: 2c86743de7e109e49a2c39ae8ac033aa, type: 3}
+  bulletPrefab: {fileID: 8765630053741706651, guid: 0e5fb43e1c9ebbf498a16f3c3267245a, type: 3}
   visuals: {fileID: 516154431555982679}
   aimPoint: {fileID: 5960581776331966296}
   shootPattern: {fileID: 11400000, guid: 0eb56e592762f5c4d979630d0014cf91, type: 2}
