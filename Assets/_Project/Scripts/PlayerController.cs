@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Health))]
+[RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
@@ -37,6 +38,8 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody rb;
     Health health;
+    AudioSource hurtAudio;
+
     Camera mainCamera;
 
     Vector2 moveStickInput;
@@ -63,6 +66,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         health = GetComponent<Health>();
+        hurtAudio = GetComponent<AudioSource>();
         health.onDamage.AddListener(OnDamage);
 
         moveStickAction = InputSystem.actions.FindAction("MoveStick");
@@ -85,6 +89,7 @@ public class PlayerController : MonoBehaviour
         blinkTimer = blinkSpeed;
 
         CameraController.Instance.Shake();
+        hurtAudio.Play();
     }
 
     void OnEnable()
