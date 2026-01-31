@@ -16,8 +16,6 @@ public class GameManager : MonoBehaviour
     private WaveSpawner spawner;
     private EnemyManager enemyManager;
 
-    //[Header("Input")]
-    //public InputActionReference pauseAction;
     InputAction pauseAction;
 
     [SerializeField] private bool started;
