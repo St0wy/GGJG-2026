@@ -59,8 +59,10 @@ public class PlayerController : MonoBehaviour
         Vector3 velocity = new Vector3(moveInput.x, 0f, moveInput.y) * moveSpeed;
         rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
 
+        float deadzoneSquared = stickDeadzone * stickDeadzone;
+
         // Handle aim
-        if (stickInput.sqrMagnitude > stickDeadzone * stickDeadzone)
+        if (stickInput.sqrMagnitude > deadzoneSquared)
         {
             // Aim using stick
 
@@ -101,6 +103,19 @@ public class PlayerController : MonoBehaviour
 
             rb.MoveRotation(rotation);
             oldMousePos = mousePos;
+        } 
+        else if (moveInput.sqrMagnitude > deadzoneSquared)
+        {
+            // Aim in the move direction
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            Vector3 dir = new Vector3(moveInput.x, 0f, moveInput.y);
+            Quaternion target = Quaternion.LookRotation(dir);
+
+            rb.MoveRotation(
+                Quaternion.Slerp(rb.rotation, target, rotationSpeed * Time.fixedDeltaTime)
+            );
         }
     }
 }
