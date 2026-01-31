@@ -9,14 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6858168672339224380}
-  - component: {fileID: 1422861343701650643}
   - component: {fileID: 5477083251987040393}
   - component: {fileID: 909614401999098478}
   - component: {fileID: 7635648080848056654}
   - component: {fileID: 1185397125699043109}
   - component: {fileID: -483627146593349083}
+  - component: {fileID: 1881186592559331951}
   m_Layer: 0
-  m_Name: PlayerBullet
+  m_Name: PlayerBullet 2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,19 +37,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1422861343701650643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8765630053741706651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f34ac32d3283d24181d8bc780dbfc46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SimpleProjectile
-  lifeTime: 6
 --- !u!33 &5477083251987040393
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -167,6 +154,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92cd6f0a7e54fef47ab794d340e3867c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageOnTrigger
-  damageAmount: 2
+  damageAmount: 1
   tagToHurt: Enemy
-  destroyOnDamage: 1
+  destroyOnDamage: 0
+--- !u!114 &1881186592559331951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8765630053741706651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63699b84421696a41a99eda546794c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SecondProjectile
+  bounceCount: 5

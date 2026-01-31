@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516154431555982679}
-  m_Mesh: {fileID: -3165985885265623073, guid: 473c5a9dcfbfb1b4abc1e03ff3a08309, type: 3}
+  m_Mesh: {fileID: -2129050142767732527, guid: 5e22a63a91988de47b5bbd4eecb4cb1a, type: 3}
 --- !u!23 &6689178159411515421
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 096de6ad688a0e04c8ece66e5ce9a41c, type: 2}
+  - {fileID: 2100000, guid: 1556a0ec09128e542a09aa67d7613d95, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -208,10 +208,11 @@ MonoBehaviour:
   knockbackDuration: 0.08
   invicibilityDuration: 1
   blinkSpeed: 0.1
-  bulletPrefab: {fileID: 8765630053741706651, guid: 2c86743de7e109e49a2c39ae8ac033aa, type: 3}
+  bulletPrefab: {fileID: 8765630053741706651, guid: 0e5fb43e1c9ebbf498a16f3c3267245a, type: 3}
   visuals: {fileID: 516154431555982679}
   aimPoint: {fileID: 5960581776331966296}
   shootPattern: {fileID: 11400000, guid: 0eb56e592762f5c4d979630d0014cf91, type: 2}
+  shardTag: Shard
   hurtAudio: {fileID: 8236085214396702492}
   shootAudio: {fileID: 3059355973389265300}
   dashAudio: {fileID: 1284434714353490862}
@@ -281,6 +282,7 @@ MonoBehaviour:
   destroyOnDeath: 0
   currentHealth: 0
   isInvicible: 0
+  isDead: 0
   onDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -395,8 +397,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 6418180475301049370, guid: 6aff982bcc171c34399811a82a672579, type: 2}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -492,15 +494,15 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 6418180475301049370, guid: 9bf381eb77ddbe84d9578fe91d779ed7, type: 2}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 104
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

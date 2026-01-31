@@ -65,6 +65,7 @@ MonoBehaviour:
   stickToGround: 1
   gravity: -20
   hurtAudio: {fileID: 2327581599563552586}
+  shardPrefab: {fileID: 1118483177560812656, guid: b23b959c061e0304ea4b33021c4b70f9, type: 3}
 --- !u!33 &6986980884782633980
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -218,10 +219,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4c054cda81b21438f587bb0c785673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 1
+  maxHealth: 4
   destroyOnDeath: 0
   currentHealth: 0
   isInvicible: 0
+  isDead: 0
   onDamage:
     m_PersistentCalls:
       m_Calls: []

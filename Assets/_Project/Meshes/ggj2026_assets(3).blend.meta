@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 473c5a9dcfbfb1b4abc1e03ff3a08309
+guid: 5e22a63a91988de47b5bbd4eecb4cb1a
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Mask
+    second: {fileID: 2100000, guid: 1556a0ec09128e542a09aa67d7613d95, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: default
+    second: {fileID: 2100000, guid: c32e7816bafb34e43aceb48c78b01dcf, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

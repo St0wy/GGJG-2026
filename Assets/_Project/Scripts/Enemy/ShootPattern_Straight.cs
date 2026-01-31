@@ -19,5 +19,6 @@ public class ShootPattern_Straight : EnemyShootPattern
         var go = Object.Instantiate(projectilePrefab, firePoint.position, Quaternion.LookRotation(dir, Vector3.up));
         var rb = go.GetComponent<Rigidbody>();
         if (rb != null) rb.linearVelocity = dir * muzzleSpeed;
+        if (go.TryGetComponent(out SecondProjectile proj)) proj.speed = muzzleSpeed;
     }
 }
