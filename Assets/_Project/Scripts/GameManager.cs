@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private bool paused = false;
     public bool IsPaused => paused;
-    public int ShardMask { get => shardMask;}
+    public int ShardMask { get => shardMask; }
 
     public void ShardIncrement()
     {
@@ -65,14 +65,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(startDelay);
 
         // 3️⃣ Spawn de la première vague
-        spawner.SpawnFirstWave();
+        if (spawner) spawner.SpawnFirstWave();
 
         // Petite frame de sécurité (optionnel)
         yield return null;
 
         // 4️⃣ Lancement du jeu
         started = true;
-        enemyManager.SetPausedAll(false);
         paused = false;
     }
 
@@ -87,9 +86,8 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1.0f;
         }
 
-            paused = pause;
-        enemyManager.SetPausedAll(pause);
-        
+        paused = pause;
+
     }
 
     public void TogglePauseAll() => SetPausedAll(!paused);

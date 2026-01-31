@@ -6,7 +6,6 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private bool paused;
 
     GameManager manager;
-    public bool IsPaused => paused;
     public static EnemyManager Instance { get; private set; }
     private readonly List<EnemyController> enemies = new();
 
@@ -31,7 +30,6 @@ public class EnemyManager : MonoBehaviour
         if (!enemies.Contains(e))
         {
             enemies.Add(e);
-            e.SetPaused(paused); // applique l’état courant
         }
     }
 
@@ -40,25 +38,4 @@ public class EnemyManager : MonoBehaviour
         if (e == null) return;
         enemies.Remove(e);
     }
-
-    public void SetPausedAll(bool pause)
-    {
-        if (!manager.IsStarted)
-        {
-            paused = true;
-        }
-        else
-        {
-            paused = pause;
-        }
-
-            // cleanup nulls
-            for (int i = enemies.Count - 1; i >= 0; i--)
-                if (enemies[i] == null) enemies.RemoveAt(i);
-
-        foreach (var e in enemies)
-            e.SetPaused(paused);
-    }
-
-    public void TogglePauseAll() => SetPausedAll(!paused);
 }

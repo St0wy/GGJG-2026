@@ -31,9 +31,12 @@ public class EnemyController : MonoBehaviour
     private float yVel;
 
     EnemyManager manager;
+    GameManager gameManager;
 
     Rigidbody rigid;
     RigidbodyConstraints constraints;
+
+    bool oldStart;
 
     private void Awake()
     {
@@ -46,6 +49,7 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         t0 = Time.time;
         nextShotTime = Time.time + fireStartDelay;
+        gameManager = FindAnyObjectByType<GameManager>();
     }
 
     private void Start()
@@ -56,11 +60,19 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        if (manager.IsPaused) return;
+        if (gameManager.IsPaused) return;
+        if (!gameManager.IsStarted) return;
+        if (!oldStart && gameManager.IsStarted)
+        {
+            nextShotTime = Time.time + fireStartDelay;
+            t0 = Time.time;
+        }
 
         HandleRotation();
         HandleMovement();
         HandleShooting();
+
+        oldStart = gameManager.IsStarted;
     }
 
     private void OnDestroy()
@@ -68,22 +80,22 @@ public class EnemyController : MonoBehaviour
         if (manager) manager.Unregister(this);
     }
 
-    public void SetPaused(bool paused)
-    {
-        if (paused)
-        {
-            // stop net
-            yVel = 0f;
-            rigid.constraints = rigid.constraints | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-        }
-        else
-        {
-            rigid.constraints = constraints;
-            // resync timers pour éviter un tir instantané à la reprise
-            nextShotTime = Time.time + fireStartDelay;
-            t0 = Time.time; // optionnel: remet le pattern à zéro
-        }
-    }
+    //public void SetPaused(bool paused)
+    //{
+    //    if (paused)
+    //    {
+    //        // stop net
+    //        yVel = 0f;
+    //        rigid.constraints = rigid.constraints | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+    //    }
+    //    else
+    //    {
+    //        rigid.constraints = constraints;
+    //        // resync timers pour éviter un tir instantané à la reprise
+    //        nextShotTime = Time.time + fireStartDelay;
+    //        t0 = Time.time; // optionnel: remet le pattern à zéro
+    //    }
+    //}
 
     private void HandleRotation()
     {
@@ -114,17 +126,7 @@ public class EnemyController : MonoBehaviour
             velocity = movePattern.GetVelocity(t, transform, target);
         }
 
-        // gravité + sol
-        //if (stickToGround)
-        //{
-        //    if (cc.isGrounded && yVel < 0f) yVel = -1f;
-        //    yVel += gravity * Time.deltaTime;
-        //    velocity.y = yVel;
-        //}
-
         rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
-
-        //cc.Move(velocity * Time.deltaTime);
     }
 
     private void HandleShooting()
