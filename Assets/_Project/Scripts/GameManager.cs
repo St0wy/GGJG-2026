@@ -6,6 +6,8 @@ using static UnityEngine.Timeline.DirectorControlPlayable;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     [Header("Startup")]
     public float startDelay = 3f;
 
@@ -25,13 +27,29 @@ public class GameManager : MonoBehaviour
     public bool IsPaused => paused;
     public int ShardMask { get => shardMask; }
 
+    [SerializeField] GameObject MainUI;
+    [SerializeField] GameObject GameOverUI;
+
     public void ShardIncrement()
     {
         shardMask++;
     }
 
+    public void GameOver()
+    {
+        MainUI.SetActive(false);
+        GameOverUI.SetActive(true);
+    }
+
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         if (enemyManager == null)
             enemyManager = FindAnyObjectByType<EnemyManager>();
 

@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement style="flex-grow: 1; width: 30%;"/>
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 40%; height: 100%;">
+            <ui:Label text="Game Over" name="Label" style="-unity-text-align: lower-center; height: 50%; font-size: 64px; -unity-font-style: bold; border-bottom-width: 32px;"/>
+            <ui:Button text="Restart" name="Restart-Btn" style="-unity-font-style: bold;"/>
+            <ui:Button text="Main Menu" name="MainMenu-Btn" style="-unity-font-style: bold;"/>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; width: 30%;"/>
+    </ui:VisualElement>
+</ui:UXML>

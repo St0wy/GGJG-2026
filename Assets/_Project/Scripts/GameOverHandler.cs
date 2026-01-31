@@ -18,6 +18,6 @@ public class GameOverHandler : MonoBehaviour
 
     private void OnDeath()
     {
-        Debug.Log("Game over lol");
+        GameManager.Instance.GameOver();
     }
 }
