@@ -281,6 +281,7 @@ MonoBehaviour:
   destroyOnDeath: 0
   currentHealth: 0
   isInvicible: 0
+  isDead: 0
   onDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -395,8 +396,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 6418180475301049370, guid: 6aff982bcc171c34399811a82a672579, type: 2}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -492,15 +493,15 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 6418180475301049370, guid: 9bf381eb77ddbe84d9578fe91d779ed7, type: 2}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 104
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
