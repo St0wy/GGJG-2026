@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7587256188811796927}
   - component: {fileID: 2346875611106889249}
+  - component: {fileID: 67031524392649865}
   m_Layer: 0
   m_Name: Shard
   m_TagString: Shard
@@ -55,6 +56,24 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &67031524392649865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118483177560812656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93245a0fcb988d04e8e164ac534b84a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  meshFilter: {fileID: 3519735304877121860}
+  shards:
+  - {fileID: -8533950973247798670, guid: f78aa2e43a529964092af2922baa8b6f, type: 3}
+  - {fileID: 8962375445386266983, guid: 87f41df19fd86db4f832724ef10db5e8, type: 3}
+  - {fileID: 763260139723426303, guid: d258e2104b60f314ab3acfeb8085e190, type: 3}
+  - {fileID: -8963448542495349287, guid: 0f3706160044a464d88724cd6c1523a3, type: 3}
 --- !u!1 &2568915943181569547
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,5 +281,10 @@ PrefabInstance:
 --- !u!4 &537976787705343713 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6e1c4ef4b90d79045b0ea38bf4a1d940, type: 3}
+  m_PrefabInstance: {fileID: 71492946467768586}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &3519735304877121860 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -5754084199372789682, guid: 6e1c4ef4b90d79045b0ea38bf4a1d940, type: 3}
   m_PrefabInstance: {fileID: 71492946467768586}
   m_PrefabAsset: {fileID: 0}
