@@ -177,6 +177,10 @@ MonoBehaviour:
   rotationSpeed: 20
   stickDeadzone: 0.2
   shootCooldown: 0.3
+  baseShootMaterial: {fileID: 2100000, guid: 1556a0ec09128e542a09aa67d7613d95, type: 2}
+  secondShootMaterial: {fileID: 2100000, guid: 197086a378637ab4ca9aa387bafbbff6, type: 2}
+  hasUnlockedSecondShoot: 0
+  isUsingFirstShoot: 1
   dashSpeed: 20
   dashDuration: 0.15
   dashCooldown: 0.5
@@ -184,7 +188,8 @@ MonoBehaviour:
   knockbackDuration: 0.08
   invicibilityDuration: 1
   blinkSpeed: 0.1
-  bulletPrefab: {fileID: 8765630053741706651, guid: 2c86743de7e109e49a2c39ae8ac033aa, type: 3}
+  firstBulletPrefab: {fileID: 8765630053741706651, guid: 2c86743de7e109e49a2c39ae8ac033aa, type: 3}
+  secondBulletPrefab: {fileID: 8765630053741706651, guid: 0e5fb43e1c9ebbf498a16f3c3267245a, type: 3}
   visuals: {fileID: 516154431555982679}
   aimPoint: {fileID: 5960581776331966296}
   shootPattern: {fileID: 11400000, guid: 876b5342404e523488f407d533636f27, type: 2}
@@ -192,7 +197,7 @@ MonoBehaviour:
   hurtAudio: {fileID: 8236085214396702492}
   shootAudio: {fileID: 3059355973389265300}
   dashAudio: {fileID: 1284434714353490862}
-  collectParticles: {fileID: 0}
+  collectParticles: {fileID: 2749644590355990945, guid: 2d979ca4ead93344988897f3b2c92548, type: 3}
 --- !u!136 &4716455188677399140
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -261,7 +266,6 @@ MonoBehaviour:
   isInvicible: 0
   isDead: 0
   damageParticles: {fileID: 302031638275335929, guid: eade2af4430979641828afb8bb9bc60a, type: 3}
-  deadParticles: {fileID: 7276559627363785706, guid: 4ae23f7a3b57bda42a13f1e538ab5a2e, type: 3}
   onDamage:
     m_PersistentCalls:
       m_Calls: []

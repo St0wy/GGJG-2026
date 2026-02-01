@@ -132,13 +132,9 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2976502537442546558, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
-      propertyPath: collectParticles
+      propertyPath: meshRenderer
       value: 
-      objectReference: {fileID: 2749644590355990945, guid: 2d979ca4ead93344988897f3b2c92548, type: 3}
-    - target: {fileID: 4121708207551116087, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
-      propertyPath: damageParticles
-      value: 
-      objectReference: {fileID: 302031638275335929, guid: eade2af4430979641828afb8bb9bc60a, type: 3}
+      objectReference: {fileID: 368805118}
     - target: {fileID: 8516509498662361573, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -184,6 +180,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
+--- !u!23 &368805118 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6689178159411515421, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
+  m_PrefabInstance: {fileID: 368805117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &381687678
 PrefabInstance:
   m_ObjectHideFlags: 0
