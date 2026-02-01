@@ -192,6 +192,7 @@ MonoBehaviour:
   hurtAudio: {fileID: 8236085214396702492}
   shootAudio: {fileID: 3059355973389265300}
   dashAudio: {fileID: 1284434714353490862}
+  collectParticles: {fileID: 0}
 --- !u!136 &4716455188677399140
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -259,6 +260,8 @@ MonoBehaviour:
   currentHealth: 0
   isInvicible: 0
   isDead: 0
+  damageParticles: {fileID: 302031638275335929, guid: eade2af4430979641828afb8bb9bc60a, type: 3}
+  deadParticles: {fileID: 7276559627363785706, guid: 4ae23f7a3b57bda42a13f1e538ab5a2e, type: 3}
   onDamage:
     m_PersistentCalls:
       m_Calls: []

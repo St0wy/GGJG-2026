@@ -26,6 +26,8 @@ public class EnemyController : MonoBehaviour
     public float gravity = -20f;
     public AudioSource hurtAudio;
 
+    [SerializeField] private GameObject deadParticles;
+
     public GameObject shardPrefab;
 
     //private CharacterController cc;
@@ -75,8 +77,10 @@ public class EnemyController : MonoBehaviour
             Destroy(projectile.gameObject);
         }
 
-        Destroy(gameObject, 0.3f);
+        Instantiate(deadParticles, transform.position, Quaternion.identity);
         Instantiate(shardPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject, 0.3f);
+        
     }
 
     private void OnDamage(GameObject arg0)

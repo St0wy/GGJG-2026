@@ -65,6 +65,7 @@ MonoBehaviour:
   stickToGround: 1
   gravity: -20
   hurtAudio: {fileID: 2327581599563552586}
+  deadParticles: {fileID: 7276559627363785706, guid: 4ae23f7a3b57bda42a13f1e538ab5a2e, type: 3}
   shardPrefab: {fileID: 1118483177560812656, guid: b23b959c061e0304ea4b33021c4b70f9, type: 3}
 --- !u!33 &6986980884782633980
 MeshFilter:
