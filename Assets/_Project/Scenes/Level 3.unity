@@ -132,9 +132,17 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2976502537442546558, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
+      propertyPath: isUsingFirstShoot
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976502537442546558, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
       propertyPath: hasUnlockedSecondShoot
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6689178159411515421, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 197086a378637ab4ca9aa387bafbbff6, type: 2}
     - target: {fileID: 8516509498662361573, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
