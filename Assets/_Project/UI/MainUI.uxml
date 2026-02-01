@@ -9,6 +9,6 @@
     </ui:VisualElement>
     <ui:VisualElement name="ShardMask" style="flex-grow: 1; flex-direction: row; top: 15%; position: absolute; height: 10%; width: 25%;">
         <ui:Image source="project://database/Assets/_Project/Sprites/ShardMask.png?fileID=21300000&amp;guid=2be70a3990c2b7b458b0e1893463d543&amp;type=3#ShardMask" scale-mode="ScaleToFit" uv="-0.1,0,1.1,1" style="width: 25%; height: 100%; left: 8%;"/>
-        <ui:Label text="9999" name="SM-label" style="width: 75px; height: 100%; -unity-text-align: middle-left; -unity-font-style: bold; left: 12%; font-size: 22px;"/>
+        <ui:Label text="9999" name="SM-label" style="width: 75px; height: 100%; -unity-text-align: middle-left; -unity-font-style: bold; left: 12%; font-size: 22px; -unity-font-definition: url(&quot;project://database/Assets/_Project/Butterpop.ttf?fileID=12800000&amp;guid=eff34116d604be54ba897adce044dcc6&amp;type=3#Butterpop&quot;);"/>
     </ui:VisualElement>
 </ui:UXML>
