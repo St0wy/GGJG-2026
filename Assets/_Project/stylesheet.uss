@@ -18,6 +18,10 @@
     border-bottom-left-radius: -1px;
 }
 
+.button:focus {
+    background-image: url("project://database/Assets/_Project/Textures/button_hovered.png?fileID=2800000&guid=5a5183e5971aa9a45b88480711d46264&type=3#button_hovered");
+}
+
 .button:hover {
     background-image: url("project://database/Assets/_Project/Textures/button_hovered.png?fileID=2800000&guid=5a5183e5971aa9a45b88480711d46264&type=3#button_hovered");
 }
