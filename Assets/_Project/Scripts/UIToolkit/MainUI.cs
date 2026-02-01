@@ -19,6 +19,6 @@ public class Shard_UI : MonoBehaviour
 
     private void Update()
     {
-        SMLabel.text = game.ShardMask.ToString();
+        SMLabel.text = $"{game.ShardMask}/{game.currentShardGoal}";
     }
 }
