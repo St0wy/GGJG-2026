@@ -371,9 +371,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   startDelay: 3
   shardMask: 0
-  currentShardGoal: 30
-  nextSceneName: Level 4
-  currentLevel: 3
+  currentShardGoal: 60
+  nextSceneName: WinScene
+  currentLevel: 6
   started: 0
   paused: 0
   overed: 0
@@ -776,11 +776,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSpawner
   player: {fileID: 1146968260}
-  startWave: {fileID: 11400000, guid: 4314c7ed263c9ca4684c699ce37cafa5, type: 2}
+  startWave: {fileID: 11400000, guid: 5614613495cfaf74e9eb607f6de7d74d, type: 2}
   waves:
-  - {fileID: 11400000, guid: 5cfdbbd65a593844c815916f22d353fc, type: 2}
+  - {fileID: 11400000, guid: d910f58cd07e0b144ad446b79ac8e166, type: 2}
+  - {fileID: 11400000, guid: 1b738a9117372494fad9432025edd77d, type: 2}
+  - {fileID: 11400000, guid: 54aa0bbd476133e428798ed4c1631dc9, type: 2}
+  - {fileID: 11400000, guid: e1a38751cbfc6364591c5b898557c52b, type: 2}
+  - {fileID: 11400000, guid: 8e87dbbb03e21164cb4be2b456c7487f, type: 2}
+  - {fileID: 11400000, guid: 1ce9de8c6706fa04191382b3967fe7a3, type: 2}
+  - {fileID: 11400000, guid: 3a53f1fef153c4c44bfc43570873bd4d, type: 2}
   loopWaves: 0
-  timeBetweenWaves: 8
+  timeBetweenWaves: 6
   groundMask:
     serializedVersion: 2
     m_Bits: 8
