@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
     public AudioSource shootAudio;
     public AudioSource dashAudio;
 
+    [Header("Particle")]
+    [SerializeField] private GameObject collectParticles;
+
     InputAction moveStickAction;
     InputAction moveKeyboardAction;
     InputAction aimStickAction;
@@ -294,6 +297,7 @@ public class PlayerController : MonoBehaviour
         {
             game.ShardIncrement();
             Debug.Log("Adding shards");
+            Instantiate(collectParticles, other.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
         }
     }

@@ -224,6 +224,7 @@ MonoBehaviour:
   currentHealth: 0
   isInvicible: 0
   isDead: 0
+  damageParticles: {fileID: 302031638275335929, guid: eade2af4430979641828afb8bb9bc60a, type: 3}
   onDamage:
     m_PersistentCalls:
       m_Calls: []

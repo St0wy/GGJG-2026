@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class DamageOnTriggerAndCollision : MonoBehaviour
 {
+
     public int damageAmount = 1;
     public string tagToHurt;
     public bool destroyOnDamage;

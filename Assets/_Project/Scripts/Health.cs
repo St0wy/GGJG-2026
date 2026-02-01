@@ -9,6 +9,9 @@ public class Health : MonoBehaviour
     public bool isInvicible;
     public bool isDead;
 
+    [Header("Particle")]
+    [SerializeField] private GameObject damageParticles;
+
     public UnityEvent<GameObject> onDamage;
     public UnityEvent<GameObject> onDeath;
 
@@ -25,6 +28,8 @@ public class Health : MonoBehaviour
 
         currentHealth -= amount;
         onDamage?.Invoke(source);
+
+        Instantiate(damageParticles, transform.position, Quaternion.identity);
 
         if (currentHealth <= 0)
         {
