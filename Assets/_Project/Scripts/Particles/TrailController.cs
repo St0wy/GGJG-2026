@@ -16,18 +16,16 @@ public class TrailController : MonoBehaviour
     public void ActiveTrail()
     {
         StartCoroutine(DisableTrail());
+        trail.emitting = true;
         foreach (var particle in Particles) {
-            particle.SetActive(true);
+            particle.GetComponent<ParticleSystem>().Play();
+
         }
     }
 
     private IEnumerator DisableTrail()
     {
         yield return new WaitForSeconds(delay);
-        trail.enabled = false;
-        foreach (var particle in Particles)
-        {
-            particle.SetActive(false);
-        }
+        trail.emitting = false;
     }
 }
