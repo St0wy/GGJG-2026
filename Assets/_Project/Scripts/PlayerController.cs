@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
 
     [Header("Shooting")]
     public float shootCooldown = 0.1f;
+    public Material baseShootMaterial;
+    public Material secondShootMaterial;
+    public bool hasUnlockedSecondShoot = false;
+    public bool isUsingFirstShoot = true;
 
     [Header("Dash")]
     public float dashSpeed = 20f;
@@ -27,11 +31,13 @@ public class PlayerController : MonoBehaviour
     public float blinkSpeed = 0.1f;
 
     [Header("Refs")]
-    public GameObject bulletPrefab;
+    public GameObject firstBulletPrefab;
+    public GameObject secondBulletPrefab;
     public GameObject visuals;
     public Transform aimPoint;
     public EnemyShootPattern shootPattern;
     public string shardTag = "Shard";
+    public MeshRenderer meshRenderer;
 
     [Header("Audio")]
     public AudioSource hurtAudio;
@@ -47,6 +53,7 @@ public class PlayerController : MonoBehaviour
     InputAction aimMouseAction;
     InputAction shootAction;
     InputAction dashAction;
+    InputAction switchAction;
 
     Rigidbody rb;
     Health health;
@@ -88,6 +95,7 @@ public class PlayerController : MonoBehaviour
         aimMouseAction = InputSystem.actions.FindAction("AimMouse");
         shootAction = InputSystem.actions.FindAction("Shoot");
         dashAction = InputSystem.actions.FindAction("Dash");
+        switchAction = InputSystem.actions.FindAction("SwitchMask");
 
         mainCamera = Camera.main;
     }
@@ -139,7 +147,8 @@ public class PlayerController : MonoBehaviour
             if (timerShootCooldown <= 0)
             {
                 timerShootCooldown = shootCooldown;
-                shootPattern.Fire(aimPoint, bulletPrefab, null);
+                GameObject bullet = isUsingFirstShoot ? firstBulletPrefab : secondBulletPrefab;
+                shootPattern.Fire(aimPoint, bullet, null);
                 shootAudio.Play();
             }
         }
@@ -181,6 +190,19 @@ public class PlayerController : MonoBehaviour
                 health.isInvicible = false;
                 isVisible = true;
                 visuals.SetActive(isVisible);
+            }
+        }
+
+        if (hasUnlockedSecondShoot && switchAction.WasPressedThisFrame())
+        {
+            isUsingFirstShoot = !isUsingFirstShoot;
+            if (isUsingFirstShoot)
+            {
+                meshRenderer.material = baseShootMaterial;
+            }
+            else
+            {
+                meshRenderer.material = secondShootMaterial;
             }
         }
     }
