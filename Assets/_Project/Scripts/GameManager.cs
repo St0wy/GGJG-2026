@@ -2,6 +2,7 @@
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static UnityEngine.Timeline.DirectorControlPlayable;
 
 public class GameManager : MonoBehaviour
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowWinScreen()
     {
-        Debug.Log("YOU WIN");
+        SceneManager.LoadScene("WinScene");
     }
 
     public void GameOver()

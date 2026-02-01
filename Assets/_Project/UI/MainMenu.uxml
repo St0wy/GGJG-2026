@@ -5,7 +5,6 @@
         <ui:VisualElement name="Main" style="flex-grow: 1; width: 40%; flex-direction: column;">
             <ui:Image source="project://database/Assets/_Project/Textures/logo.png?fileID=2800000&amp;guid=e6258750b7e9d7547aa390615d771e4b&amp;type=3#logo" scale-mode="StretchToFill" style="width: 100%; height: 50%; aspect-ratio: 1.33398; align-items: center; justify-content: center; align-content: center; align-self: center;"/>
             <ui:Button text="Play" name="Play-Btn" class="button"/>
-            <ui:Button text="About" name="About-Btn" class="button"/>
             <ui:Button text="Exit" name="Exit-Btn" class="button"/>
         </ui:VisualElement>
         <ui:VisualElement style="flex-grow: 1; width: 30%; min-height: 50%;"/>

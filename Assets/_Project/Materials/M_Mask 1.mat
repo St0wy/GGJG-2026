@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 60d646244f75ab84f8eb12819a6d87ff, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - TOON_OUTLINE_NORMAL
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -154,7 +155,7 @@ Material:
     - _OutlineFar: 100
     - _OutlineNear: 0.5
     - _OutlineOffsetZ: 0.75
-    - _OutlineWidth: 5
+    - _OutlineWidth: 36.66
     - _Outline_BaseColorBlend: 0.5
     - _Outline_LightColorBlend: 0.5
     - _Parallax: 0.02

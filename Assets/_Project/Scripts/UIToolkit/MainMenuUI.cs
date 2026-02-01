@@ -13,8 +13,8 @@ public class MainMenuUI : MonoBehaviour
         Button ButtonPlay = root.Q<Button>("Play-Btn");
         ButtonPlay.clicked += Play;
 
-        Button AboutPlay = root.Q<Button>("About-Btn");
-        //AboutPlay.clicked += About;
+        //Button AboutPlay = root.Q<Button>("About-Btn");
+        ////AboutPlay.clicked += About;
 
         Button ExitPlay = root.Q<Button>("Exit-Btn");
         ExitPlay.clicked += Exit;
@@ -23,13 +23,13 @@ public class MainMenuUI : MonoBehaviour
 
     private void Play()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Level1");
     }
 
-    private void About()
-    {
-        SceneManager.LoadScene("AboutScene");
-    }
+    //private void About()
+    //{
+    //    SceneManager.LoadScene("AboutScene");
+    //}
 
     private void Exit()
     {

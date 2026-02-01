@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89de4a6930e735f41a5d035ebbee54d6, type: 3}
   m_Name: WaveDefinition 2 - LVL1
   m_EditorClassIdentifier: Assembly-CSharp::WaveDefinition
-  pattern: {fileID: 11400000, guid: 3d2afbbf503163a45abefcd1c98504c5, type: 2}
-  totalToSpawn: 8
+  pattern: {fileID: 11400000, guid: ca91c9df60c27c54d940a627f1f12a72, type: 2}
+  totalToSpawn: 5
   enemyPrefabs:
   - {fileID: 7305922326506502481, guid: 89bb5f1b86fdab14b83493b1aab842a9, type: 3}
   minDistanceFromPlayer: 10

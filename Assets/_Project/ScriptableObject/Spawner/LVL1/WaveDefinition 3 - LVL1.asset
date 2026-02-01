@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaveDefinition 3 - LVL1
   m_EditorClassIdentifier: Assembly-CSharp::WaveDefinition
   pattern: {fileID: 11400000, guid: c61e5ae0aa258cf439fd999aa4ae7c96, type: 2}
-  totalToSpawn: 8
+  totalToSpawn: 5
   enemyPrefabs:
   - {fileID: 7305922326506502481, guid: 89bb5f1b86fdab14b83493b1aab842a9, type: 3}
   minDistanceFromPlayer: 10

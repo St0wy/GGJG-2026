@@ -58,8 +58,8 @@ MonoBehaviour:
   shootPattern: {fileID: 11400000, guid: 0eb56e592762f5c4d979630d0014cf91, type: 2}
   firePoint: {fileID: 583359333102997922}
   projectilePrefab: {fileID: 8765630053741706651, guid: 699bb39be3b4048469ae9d73d3332900, type: 3}
-  fireRate: 1.5
-  fireStartDelay: 0.4
+  fireRate: 2
+  fireStartDelay: 2
   rotateTowardTarget: 1
   rotationSpeed: 8
   stickToGround: 1
