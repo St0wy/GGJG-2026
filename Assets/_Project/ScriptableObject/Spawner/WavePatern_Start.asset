@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WavePatern_Start
   m_EditorClassIdentifier: Assembly-CSharp::WavePattern_FormationStart
   shape: 2
-  formationCount: 1
+  formationCount: 4
   spacing: 1.2
   rectColumns: 4
   centerRectangle: 1

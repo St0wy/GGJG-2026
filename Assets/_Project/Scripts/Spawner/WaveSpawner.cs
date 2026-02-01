@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 #if UNITY_AI_NAVIGATION
 using UnityEngine.AI;
@@ -11,6 +11,7 @@ public class WaveSpawner : MonoBehaviour
     public Transform player;
 
     [Header("Waves")]
+    public WaveDefinition startWave;
     public WaveDefinition[] waves;
     public bool loopWaves = false;
     public float timeBetweenWaves = 3f;
@@ -37,9 +38,15 @@ public class WaveSpawner : MonoBehaviour
     #region Mono
     private void OnEnable()
     {
+        SpawnFirstWave();
+    }
+    public void StartSpawn()
+    {
         if (routine == null && waves != null && waves.Length > 0)
             routine = StartCoroutine(RunWaves());
     }
+
+
 
     private void OnDisable()
     {
@@ -64,7 +71,7 @@ public class WaveSpawner : MonoBehaviour
     public void SpawnFirstWave()
     {
         StopAllCoroutines();
-        StartCoroutine(SpawnWave(waves[0]));
+        StartCoroutine(SpawnWave(startWave));
     }
 
     #endregion
@@ -125,7 +132,7 @@ public class WaveSpawner : MonoBehaviour
                 continue;
             }
 
-            // Spawn chaque élément du batch avec offsets
+            // Spawn chaque Ã©lÃ©ment du batch avec offsets
             for (int i = 0; i < item.batch.Length; i++)
             {
                 var req = item.batch[i];
@@ -145,7 +152,7 @@ public class WaveSpawner : MonoBehaviour
 
     private bool TryResolveOnGround(Vector3 center, Quaternion facing, Vector3 localOffset, WaveDefinition wave, out Vector3 finalPos)
     {
-        // Offset en world space : la formation est orientée par "facing"
+        // Offset en world space : la formation est orientÃ©e par "facing"
         Vector3 worldOffset = facing * localOffset;
 
         Vector3 candidate = center + worldOffset;
@@ -180,7 +187,7 @@ public class WaveSpawner : MonoBehaviour
 
             Vector3 groundPos = hit.point;
 
-            // sécurité min
+            // sÃ©curitÃ© min
             Vector3 flat = groundPos - playerPos; flat.y = 0f;
             if (flat.magnitude < wave.minDistanceFromPlayer)
                 continue;

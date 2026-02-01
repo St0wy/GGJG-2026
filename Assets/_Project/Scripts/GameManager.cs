@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(startDelay);
 
         // 3️⃣ Spawn de la première vague
-        if (spawner) spawner.SpawnFirstWave();
+        if (spawner) spawner.StartSpawn();
 
         // Petite frame de sécurité (optionnel)
         yield return null;

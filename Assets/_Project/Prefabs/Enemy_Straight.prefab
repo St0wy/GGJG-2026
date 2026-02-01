@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 9203361200190888285}
   - component: {fileID: 2327581599563552586}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy_Straight
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   target: {fileID: 0}
   movePattern: {fileID: 11400000, guid: 3ea1b302389c1d54a820635beb1372a3, type: 2}
-  shootPattern: {fileID: 11400000, guid: c0af004015fa4da429297b078950e242, type: 2}
+  shootPattern: {fileID: 11400000, guid: 0eb56e592762f5c4d979630d0014cf91, type: 2}
   firePoint: {fileID: 583359333102997922}
   projectilePrefab: {fileID: 8765630053741706651, guid: 699bb39be3b4048469ae9d73d3332900, type: 3}
   fireRate: 1.5

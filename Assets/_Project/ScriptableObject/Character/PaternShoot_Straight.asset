@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f604dc9ea2a154bbb3444b654a0f2e, type: 3}
   m_Name: PaternShoot_Straight
   m_EditorClassIdentifier: Assembly-CSharp::ShootPattern_Straight
-  muzzleSpeed: 18
+  muzzleSpeed: 8

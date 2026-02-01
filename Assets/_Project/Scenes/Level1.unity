@@ -591,7 +591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8516509498662361573, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.27
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8516509498662361573, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
       propertyPath: m_LocalPosition.y
@@ -599,7 +599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8516509498662361573, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.89
+      value: -10.5
       objectReference: {fileID: 0}
     - target: {fileID: 8516509498662361573, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1827,11 +1827,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSpawner
   player: {fileID: 1146968260}
+  startWave: {fileID: 11400000, guid: 208b40875b785b044add89fa10de8ce0, type: 2}
   waves:
-  - {fileID: 11400000, guid: 208b40875b785b044add89fa10de8ce0, type: 2}
   - {fileID: 11400000, guid: dea79ad2c6a17ec45bca0d2891d547de, type: 2}
+  - {fileID: 11400000, guid: 5c0510c1c82f6ff4ea6b431d14613f31, type: 2}
   loopWaves: 0
-  timeBetweenWaves: 3
+  timeBetweenWaves: 8
   groundMask:
     serializedVersion: 2
     m_Bits: 8

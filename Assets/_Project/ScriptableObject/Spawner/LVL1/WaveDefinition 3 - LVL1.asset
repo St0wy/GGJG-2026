@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89de4a6930e735f41a5d035ebbee54d6, type: 3}
-  m_Name: WaveDefinition 2 - LVL1
+  m_Name: WaveDefinition 3 - LVL1
   m_EditorClassIdentifier: Assembly-CSharp::WaveDefinition
-  pattern: {fileID: 11400000, guid: 3d2afbbf503163a45abefcd1c98504c5, type: 2}
+  pattern: {fileID: 11400000, guid: c61e5ae0aa258cf439fd999aa4ae7c96, type: 2}
   totalToSpawn: 8
   enemyPrefabs:
   - {fileID: 7305922326506502481, guid: 89bb5f1b86fdab14b83493b1aab842a9, type: 3}
