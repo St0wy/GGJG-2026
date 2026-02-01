@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2976502537442546558, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
+      propertyPath: hasUnlockedSecondShoot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8516509498662361573, guid: ded8d88c71da93a47a0e812fffb40043, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -359,8 +363,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   startDelay: 3
   shardMask: 0
-  currentShardGoal: 18
-  nextSceneName: Level 3
+  currentShardGoal: 30
+  nextSceneName: WinScene
   started: 0
   paused: 0
   overed: 0
@@ -763,10 +767,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSpawner
   player: {fileID: 1146968260}
-  startWave: {fileID: 11400000, guid: 303da0eafc90afa4c9993bb7f03a9727, type: 2}
+  startWave: {fileID: 11400000, guid: 4314c7ed263c9ca4684c699ce37cafa5, type: 2}
   waves:
-  - {fileID: 11400000, guid: 82a972731450255418d866b2c469218e, type: 2}
-  - {fileID: 11400000, guid: f41dd312d7c461c458ed47f28839ed9f, type: 2}
+  - {fileID: 11400000, guid: 5cfdbbd65a593844c815916f22d353fc, type: 2}
   loopWaves: 0
   timeBetweenWaves: 8
   groundMask:
