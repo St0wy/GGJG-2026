@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [Header("Score")]
     [SerializeField] private int shardMask;
     public int currentShardGoal = 10;
+    public string nextSceneName;
 
     [Header("References")]
     private WaveSpawner spawner;
@@ -49,7 +50,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowWinScreen()
     {
-        SceneManager.LoadScene("WinScene");
+        SceneManager.LoadScene(nextSceneName);
     }
 
     public void GameOver()
