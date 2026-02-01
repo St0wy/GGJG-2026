@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int shardMask;
     public int currentShardGoal = 10;
     public string nextSceneName;
+    public int currentLevel = 1;
 
     [Header("References")]
     private WaveSpawner spawner;

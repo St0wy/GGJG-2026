@@ -361,6 +361,7 @@ MonoBehaviour:
   shardMask: 0
   currentShardGoal: 18
   nextSceneName: Level 3
+  currentLevel: 2
   started: 0
   paused: 0
   overed: 0

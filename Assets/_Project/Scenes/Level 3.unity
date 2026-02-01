@@ -373,6 +373,7 @@ MonoBehaviour:
   shardMask: 0
   currentShardGoal: 30
   nextSceneName: WinScene
+  currentLevel: 3
   started: 0
   paused: 0
   overed: 0
