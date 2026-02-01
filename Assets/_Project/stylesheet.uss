@@ -1,0 +1,19 @@
+:root {
+}
+
+.button {
+    background-image: url("project://database/Assets/_Project/Textures/button.png?fileID=2800000&guid=19a236cb4057ce64eba09a7cf52bbb11&type=3#button");
+    background-color: rgba(0, 0, 0, 0);
+    height: 15%;
+    -unity-font-definition: url("project://database/Assets/_Project/Butterpop.ttf?fileID=12800000&guid=eff34116d604be54ba897adce044dcc6&type=3#Butterpop");
+    color: rgb(255, 255, 255);
+    font-size: 28px;
+}
+
+.button:hover {
+    background-image: url("project://database/Assets/_Project/Textures/button_hovered.png?fileID=2800000&guid=5a5183e5971aa9a45b88480711d46264&type=3#button_hovered");
+}
+
+.button:active {
+    background-image: url("project://database/Assets/_Project/Textures/button_pressed.png?fileID=2800000&guid=5b9d44f149747dc4489fc28b45eed6ab&type=3#button_pressed");
+}
