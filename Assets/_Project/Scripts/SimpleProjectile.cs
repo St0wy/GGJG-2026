@@ -9,4 +9,12 @@ public class SimpleProjectile : MonoBehaviour
     {
         Destroy(gameObject, lifeTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Wall"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
