@@ -194,6 +194,7 @@ MonoBehaviour:
   aimPoint: {fileID: 5960581776331966296}
   shootPattern: {fileID: 11400000, guid: 876b5342404e523488f407d533636f27, type: 2}
   shardTag: Shard
+  meshRenderer: {fileID: 6689178159411515421}
   hurtAudio: {fileID: 8236085214396702492}
   shootAudio: {fileID: 3059355973389265300}
   dashAudio: {fileID: 1284434714353490862}
