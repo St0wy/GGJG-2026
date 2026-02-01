@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Particle")]
     [SerializeField] private GameObject collectParticles;
+    [SerializeField] private TrailController trailController;
 
     InputAction moveStickAction;
     InputAction moveKeyboardAction;
@@ -164,6 +165,7 @@ public class PlayerController : MonoBehaviour
             {
                 health.isInvicible = true;
                 isDashing = true;
+                trailController.ActiveTrail();
                 dashTimer = dashDuration;
                 dashCooldownTimer = dashCooldown;
 
